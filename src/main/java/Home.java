@@ -139,7 +139,7 @@ public class Home extends JFrame {
         });
      }
     public static void main(String[] args){
-        f
+        Home f1 = new Home("Home");//
      }
 }
 

@@ -115,7 +115,7 @@ public class Length extends JFrame {
         p.add(p3);
         p.add(p4);
         p.add(p5);
-        this.setVisible(true);
+        this.setVisible(true);//
     }
 
 }
