@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Home extends JFrame {
-    JButton length, speed, discount, mass, data, date, temp, time, numSys, history, help;
+    JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help;
     JLabel conv;
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 28);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
@@ -77,11 +77,11 @@ public class Home extends JFrame {
          date.setFocusable(false);
          
         
-         temp = new JButton("Temperature");
-         temp.setBackground(Color.decode("#a5b0b3"));
-         temp.setForeground(Color.decode("#36454F"));
-         temp.setFont(bFonts);
-         temp.setFocusable(false);
+         temperature = new JButton("Temperature");
+         temperature.setBackground(Color.decode("#a5b0b3"));
+         temperature.setForeground(Color.decode("#36454F"));
+         temperature.setFont(bFonts);
+         temperature.setFocusable(false);
          
          
          numSys = new JButton("Numerical system");
@@ -98,7 +98,7 @@ public class Home extends JFrame {
          p2.add(mass);
          p2.add(data);
          p2.add(date);
-         p2.add(temp);
+         p2.add(temperature);
          p2.add(time);
          p2.add(numSys);
          
@@ -152,6 +152,14 @@ public class Home extends JFrame {
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 Data l = new Data(Home.this); 
+               
+
+            }
+        });
+        temperature.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Temperature l = new Temperature(Home.this); 
                
 
             }
