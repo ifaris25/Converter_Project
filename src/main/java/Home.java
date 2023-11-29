@@ -134,7 +134,9 @@ public class Home extends JFrame {
         this.setVisible(true);
         length.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
+                setVisible(false);
                 Length l = new Length(); 
+
             }
         });
      }

@@ -21,7 +21,8 @@ public class Length extends JFrame {
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     public Length(){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(500,600);
+                 this.setSize(500,600);
+                 this.setLocation(200,300);
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEADING,5,5));
