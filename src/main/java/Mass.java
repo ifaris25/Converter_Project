@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Mass extends JFrame{
+public class Mass extends JFrame {
     
     JComboBox list1, list2;
     JTextField text1, text2;

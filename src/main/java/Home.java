@@ -148,6 +148,14 @@ public class Home extends JFrame {
 
             }
         });
+        data.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Data l = new Data(Home.this); 
+               
+
+            }
+        });
      }
     public static void main(String[] args){
         Home f1 = new Home("Home");//
