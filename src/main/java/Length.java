@@ -11,7 +11,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Length extends JFrame {
+public class Length extends JFrame{
+    
     JComboBox list1, list2;
     JTextField text1, text2, result;
     JButton convert, save, clr, back;
@@ -19,7 +20,7 @@ public class Length extends JFrame {
     String measurments[]={"km","m","cm","mm"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 28);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
-    public Length(){
+    public Length(Home homepage){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                  this.setSize(500,600);
                  this.setLocation(200,300);
@@ -38,6 +39,17 @@ public class Length extends JFrame {
         back.setBackground(Color.decode("#36454F"));
         back.setForeground(Color.decode("#fafeff"));
         back.setBorderPainted(false);
+        
+        back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                homepage.setVisible(true);
+               
+
+            }
+        });
+        
+        
         
         p1.add(back,BorderLayout.WEST);
         p1.add(l,BorderLayout.NORTH);
