@@ -138,7 +138,7 @@ public class Length extends JFrame{
              num1 = Double.parseDouble(text1.getText());
              String s1 = String.valueOf(list1.getSelectedItem());
              String s2 = String.valueOf(list2.getSelectedItem());
-             try{
+             try{                                                           //Check try and catch --it is not working--
              if(e.getSource()==convert){
                  //converting from kilometer to other units
                  if (s1.equals("km")){
