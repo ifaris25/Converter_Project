@@ -156,6 +156,37 @@ public class Home extends JFrame {
 
             }
         });
+        time.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Time l = new Time(Home.this); 
+               
+
+            }
+        });
+        
+        
+        speed.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Speed l = new Speed(Home.this); 
+               
+
+            }
+        });
+        
+        
+        numSys.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                NumricalSystem l = new NumricalSystem(Home.this); 
+               
+
+            }
+        });
+        
+        
+        
         temperature.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);

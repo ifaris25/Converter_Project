@@ -121,7 +121,7 @@ public class Mass extends JFrame {
     }
     private class ClearText implements ActionListener{
         public void actionPerformed (ActionEvent e){
-            if(e.getSource()==clr){
+            if(e.getSource()==clr){ // no need for check ,because this method will apply only when clr is active ...Faris25 :)
                 text1.setText("");
                 text2.setText("");
                 
@@ -135,7 +135,7 @@ public class Mass extends JFrame {
             String s1 = String.valueOf(list1.getSelectedItem());
             String s2 = String.valueOf(list2.getSelectedItem());
             try{
-            if(e.getSource()==convert){
+            if(e.getSource()==convert){ // same as line 124 no need ... Ifaris25 (:
                 //converting from Tonne to other units
                 if (s1.equals("Tonne t")){
                     switch(s2){
