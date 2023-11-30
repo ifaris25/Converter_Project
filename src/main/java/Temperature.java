@@ -12,7 +12,7 @@ public class Temperature extends JFrame {
     JTextField text1, text2;
     JButton convert, clr, back;
     JLabel l;
-    String measurments[]={"Celsius °C","Fehrenheit °F","Kelvin K"};
+    String measurments[]={"Celsius | °C","Fehrenheit | °F","Kelvin | K"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
@@ -27,7 +27,7 @@ public class Temperature extends JFrame {
 
         p1.setBackground(Color.decode("#36454F"));
                
-        back = new JButton ("BACK");
+        back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
         back.setBackground(Color.decode("#36454F"));
@@ -136,52 +136,52 @@ public class Temperature extends JFrame {
             try{
             if(e.getSource()==convert){
                 //converting from Celsius °C to other units
-                if (s1.equals("Celsius °C")){
+                if (s1.equals("Celsius | °C")){
                     switch(s2){
-                        case "Celsius °C":
+                        case "Celsius | °C":
                             result = num1;
                             text2.setText(String.format("%.4f", result));
                             break;
-                        case "Fehrenheit °F":
+                        case "Fehrenheit | °F":
                             result = (num1*9/5) +32;
                             text2.setText(String.format("%.4f", result));
                             break;
-                        case "Kelvin K":
+                        case "Kelvin | K":
                             result = num1+273.15;
                             text2.setText(String.format("%.4f", result));
                             break;
                     }
                 }
                 //converting from Fehrenheit °F to other units
-                if(s1.equals("Fehrenheit °F")){
+                if(s1.equals("Fehrenheit | °F")){
                     switch (s2){
-                        case "Celsius °C":
+                        case "Celsius | °C":
                             result = (num1-32)*5/9;
                             text2.setText(String.format("%.4f", result));
                             break;
-                        case "Fehrenheit °F":
+                        case "Fehrenheit | °F":
                             result = num1;
                             text2.setText(String.format("%.4f", result));
                             break; 
-                        case "Kelvin K":
+                        case "Kelvin | K":
                             result = ((num1-32)*5/9)+273.15;
                             text2.setText(String.format("%.4f", result));
                             break; 
                     }
                 }
                 //converting from Kelvin K to other units
-                if(s1.equals("Kelvin K")){
+                if(s1.equals("Kelvin | K")){
                     switch(s2){
-                        case "Celsius °C":
+                        case "Celsius | °C":
 
                             result = num1 - 273.15;
                             text2.setText(String.format("%.4f", result));
                             break;
-                        case "Fehrenheit °F":
+                        case "Fehrenheit | °F":
                             result = ((num1-273.15)*9/5)+32;
                             text2.setText(String.format("%.4f", result));
                             break;
-                        case "Kelvin K":
+                        case "Kelvin | K":
                             result = num1;
                             text2.setText(String.format("%.4f", result));
                             break;

@@ -13,7 +13,7 @@ public class Mass extends JFrame {
     JTextField text1, text2;
     JButton convert, clr, back;
     JLabel l;
-    String measurments[]={"Tonne t","Kilogram kg","Gram g","Pound lb", "Ounce oz"};
+    String measurments[]={"Tonne | T","Kilogram | Kg","Gram | G","Pound | Lb", "Ounce | Oz"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
@@ -28,7 +28,7 @@ public class Mass extends JFrame {
 
         p1.setBackground(Color.decode("#36454F"));
                
-        back = new JButton ("BACK");
+        back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
         back.setBackground(Color.decode("#36454F"));
@@ -137,125 +137,125 @@ public class Mass extends JFrame {
             try{
             if(e.getSource()==convert){ // same as line 124 no need ... Ifaris25 (:
                 //converting from Tonne to other units
-                if (s1.equals("Tonne t")){
+                if (s1.equals("Tonne | T")){
                     switch(s2){
-                        case "Tonne t":
+                        case "Tonne | T":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Kilogram kg":
+                        case "Kilogram | Kg":
                             result = num1*1000;
                             text2.setText(result+"");
                             break;
-                        case "Gram g":
+                        case "Gram | G":
                             result = num1*1000000;
                             text2.setText(result+"");
                             break;
-                        case "Pound lb":
+                        case "Pound | Lb":
                             result = num1 * 2205;
                             text2.setText(result+"");
                             break;
-                        case "Ounce oz":
+                        case "Ounce | Oz":
                             result = num1 * 35270;
                             text2.setText(result+"");
                             break;
                     }
                 }
                 //converting from Kilogram to other units
-                if(s1.equals("Kilogram kg")){
+                if(s1.equals("Kilogram | Kg")){
                     switch (s2){
-                        case "Tonne t":
+                        case "Tonne | T":
                             result = num1/1000;
                             text2.setText(result+"");
                             break;
-                        case "Kilogram kg":
+                        case "Kilogram | Kg":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Gram g":
+                        case "Gram | G":
                             result = num1 * 1000;
                             text2.setText(result+"");
                             break;
-                        case "Pound lb":
+                        case "Pound | Lb":
                             result = num1 * 2.205;
                             text2.setText(result+"");
                             break;
-                        case "Ounce oz":
+                        case "Ounce | Oz":
                             result = num1 * 35.274;
                             text2.setText(result+"");
                             break; 
                     }
                 }
                 //converting from Gram to other units
-                if(s1.equals("Gram g")){
+                if(s1.equals("Gram | G")){
                     switch(s2){
-                        case "Tonne t":
+                        case "Tonne | T":
                             result = num1 / 1000000;
                             text2.setText(result+"");
                             break;
-                        case "Kilogram kg":
+                        case "Kilogram | Kg":
                             result = num1 / 1000;
                             text2.setText(result+"");
                             break;
-                        case "Gram g":
+                        case "Gram | G":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Pound lb":
+                        case "Pound | Lb":
                             result = num1 / 453.6;
                             text2.setText(result+"");
                             break;
-                        case "Ounce oz":
+                        case "Ounce | Oz":
                             result = num1 / 28.35;
                             text2.setText(result+"");
                             break; 
                     }
                 }
                 //converting from Pound to other units
-                if(s1.equals("Pound lb")){
+                if(s1.equals("Pound | Lb")){
                     switch(s2){
-                        case "Tonne t":
+                        case "Tonne | T":
                             result = num1 / 2205 ;
                             text2.setText(result+"");
                             break;
-                        case "Kilogram kg":
+                        case "Kilogram | Kg":
                             result = num1 / 2.205;
                             text2.setText(result+"");
                             break;
-                        case "Gram g":
+                        case "Gram | G":
                             result = num1 * 453.6;
                             text2.setText(result+"");
                             break;
-                        case "Pound lb":
+                        case "Pound | Lb":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Ounce oz":
+                        case "Ounce | Oz":
                             result = num1 * 16;
                             text2.setText(result+"");
                             break; 
                     }
                 }
                 //converting from Ounce to other units
-                if(s1.equals("Ounce oz")){
+                if(s1.equals("Ounce | Oz")){
                     switch(s2){
-                        case "Tonne t":
+                        case "Tonne | T":
                             result = num1 / 35270 ;
                             text2.setText(result+"");
                             break;
-                        case "Kilogram kg":
+                        case "Kilogram | Kg":
                             result = num1 / 35.274;
                             text2.setText(result+"");
                             break;
-                        case "Gram g":
+                        case "Gram | G":
                             result = num1 * 28.35;
                             text2.setText(result+"");
                             break;
-                        case "Pound lb":
+                        case "Pound | Lb":
                             result = num1 / 16;
                             text2.setText(result+"");
                             break;
-                        case "Ounce oz":
+                        case "Ounce | Oz":
                             result = num1;
                             text2.setText(result+"");
                             break; 

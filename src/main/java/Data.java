@@ -12,7 +12,7 @@ public class Data extends JFrame {
     JTextField text1, text2;
     JButton convert, clr, back;
     JLabel l;
-    String measurments[]={"Terabyte TB","Gigabyte GB","Megabyte MB","Kilobyte KB", "Byte B", "Bit"};
+    String measurments[]={"Terabyte | TB","Gigabyte | GB","Megabyte | MB","Kilobyte | KB", "Byte | B", "Bit"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
@@ -136,25 +136,25 @@ public class Data extends JFrame {
             try{
             if(e.getSource()==convert){
                 //converting from Terabyte TB to other units
-                if (s1.equals("Terabyte TB")){
+                if (s1.equals("Terabyte | TB")){
                     switch(s2){
-                        case "Terabyte TB":
+                        case "Terabyte | TB":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Gigabyte GB":
+                        case "Gigabyte | GB":
                             result = num1*1000;
                             text2.setText(result+"");
                             break;
-                        case "Megabyte MB":
+                        case "Megabyte | MB":
                             result = num1*1000000;
                             text2.setText(result+"");
                             break;
-                        case "Kilobyte KB":
+                        case "Kilobyte | KB":
                             result = num1 * 1000000000;
                             text2.setText(result+"");
                             break;
-                        case "Byte B":
+                        case "Byte | B":
                             result = num1 * 1000000000000L;
                             text2.setText(result+"");
                             break;
@@ -165,25 +165,25 @@ public class Data extends JFrame {
                     }
                 }
                 //converting from Gigabyte GB to other units
-                if(s1.equals("Gigabyte GB")){
+                if(s1.equals("Gigabyte | GB")){
                     switch (s2){
-                        case "Terabyte TB":
+                        case "Terabyte | TB":
                             result = num1/1000;
                             text2.setText(result+"");
                             break;
-                        case "Gigabyte GB":
+                        case "Gigabyte | GB":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Megabyte MB":
+                        case "Megabyte | MB":
                             result = num1 * 1000;
                             text2.setText(result+"");
                             break;
-                        case "Kilobyte KB":
+                        case "Kilobyte | KB":
                             result = num1 * 1000000;
                             text2.setText(result+"");
                             break;
-                        case "Byte B":
+                        case "Byte | B":
                             result = num1 * 1000000000;
                             text2.setText(result+"");
                             break; 
@@ -194,25 +194,25 @@ public class Data extends JFrame {
                     }
                 }
                 //converting from Megabyte MB to other units
-                if(s1.equals("Megabyte MB")){
+                if(s1.equals("Megabyte | MB")){
                     switch(s2){
-                        case "Terabyte TB":
+                        case "Terabyte | TB":
                             result = num1 / 1000000;
                             text2.setText(result+"");
                             break;
-                        case "Gigabyte GB":
+                        case "Gigabyte | GB":
                             result = num1 / 1000;
                             text2.setText(result+"");
                             break;
-                        case "Megabyte MB":
+                        case "Megabyte | MB":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Kilobyte KB":
+                        case "Kilobyte | KB":
                             result = num1 * 1000;
                             text2.setText(result+"");
                             break;
-                        case "Byte B":
+                        case "Byte | B":
                             result = num1 * 1000000;
                             text2.setText(result+"");
                             break; 
@@ -223,25 +223,25 @@ public class Data extends JFrame {
                     }
                 }
                 //converting from Kilobyte KB to other units
-                if(s1.equals("Kilobyte KB")){
+                if(s1.equals("Kilobyte | KB")){
                     switch(s2){
-                        case "Terabyte TB":
+                        case "Terabyte | TB":
                             result = num1 / 1000000000 ;
                             text2.setText(result+"");
                             break;
-                        case "Gigabyte GB":
+                        case "Gigabyte | GB":
                             result = num1 / 1000000;
                             text2.setText(result+"");
                             break;
-                        case "Megabyte MB":
+                        case "Megabyte | MB":
                             result = num1 / 1000;
                             text2.setText(result+"");
                             break;
-                        case "Kilobyte KB":
+                        case "Kilobyte | KB":
                             result = num1;
                             text2.setText(result+"");
                             break;
-                        case "Byte B":
+                        case "Byte | B":
                             result = num1 * 1000;
                             text2.setText(result+"");
                             break; 
@@ -252,25 +252,25 @@ public class Data extends JFrame {
                     }
                 }
                 //converting from Byte B to other units
-                if(s1.equals("Byte B")){
+                if(s1.equals("Byte | B")){
                     switch(s2){
-                        case "Terabyte TB":
+                        case "Terabyte | TB":
                             result = num1 / 1000000000000L;
                             text2.setText(result+"");
                             break;
-                        case "Gigabyte GB":
+                        case "Gigabyte | GB":
                             result = num1 / 1000000000;
                             text2.setText(result+"");
                             break;
-                        case "Megabyte MB":
+                        case "Megabyte | MB":
                             result = num1 / 1000000;
                             text2.setText(result+"");
                             break;
-                        case "Kilobyte KB":
+                        case "Kilobyte | KB":
                             result = num1 / 1000;
                             text2.setText(result+"");
                             break;
-                        case "Byte B":
+                        case "Byte | B":
                             result = num1;
                             text2.setText(result+"");
                             break; 
@@ -283,23 +283,23 @@ public class Data extends JFrame {
                 //converting from Bit to other units
                 if(s1.equals("Bit")){
                     switch(s2){
-                        case "Terabyte TB":
+                        case "Terabyte | TB":
                             result = num1 / 8000000000000L;
                             text2.setText(result+"");
                             break;
-                        case "Gigabyte GB":
+                        case "Gigabyte | GB":
                             result = num1 / 8000000000L;
                             text2.setText(result+"");
                             break;
-                        case "Megabyte MB":
+                        case "Megabyte | MB":
                             result = num1 / 8000000;
                             text2.setText(result+"");
                             break;
-                        case "Kilobyte KB":
+                        case "Kilobyte | KB":
                             result = num1 / 8000;
                             text2.setText(result+"");
                             break;
-                        case "Byte B":
+                        case "Byte | B":
                             result = num1 / 8;
                             text2.setText(result+"");
                             break; 
