@@ -6,18 +6,19 @@
 
 /**
  *
- * @author Faris-Almokayad
+ * @author Faris-AlMuqayyad
  */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 public class Length extends JFrame{
     
     JComboBox list1, list2;
     JTextField text1, text2;
-    JButton convert, clr, back;
+    JButton convert, clr, back ,save;
     JLabel l;
-    String measurments[]={"km","m","cm","mm"};
+    String measurments[]={"Kilometers | km","Meters | m","Centimeters | cm","Millimeter | mm"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
@@ -32,7 +33,7 @@ public class Length extends JFrame{
 
         p1.setBackground(Color.decode("#36454F"));
                
-        back = new JButton ("back");
+        back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
         back.setBackground(Color.decode("#36454F"));
@@ -108,20 +109,34 @@ public class Length extends JFrame{
        
        p5.add(convert);
        p5.add(clr);
+       
+       //save bar
+       JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+       p6.setBackground(Color.decode("#36454F"));
+       save = new JButton("save");
+       save.setFont(bFonts);
+       save.setBackground(Color.decode("#36454F"));
+       save.setForeground(Color.decode("#fafeff"));
+       save.setFocusable(false);
+       save.setBorderPainted(false);
+       p6.add(save);
+       
        //main bar
         JPanel p = (JPanel)this.getContentPane();
-        p.setLayout(new GridLayout(5,1));
+        p.setLayout(new GridLayout(6,1));
         p.setBackground(Color.decode("#36454F"));
         p.add(p1);
         p.add(pLabel);
         p.add(p2);
         p.add(p3);
         p.add(p5);
+        p.add(p6);
         this.setVisible(true);//
         
         //action listeners call
         clr.addActionListener(new ClearText());
         convert.addActionListener(new Calculate());
+        save.addActionListener(new SaveButton());
     }
     private class ClearText implements ActionListener{
         public void actionPerformed (ActionEvent e){
@@ -135,48 +150,48 @@ public class Length extends JFrame{
     private class Calculate implements ActionListener{
          public void actionPerformed (ActionEvent e){
              double num1,result;
-             try{                                                           //Check try and catch --it is not working--
+             try{                                                           
              if(e.getSource()==convert){
                  num1 = Double.parseDouble(text1.getText());
                 String s1 = String.valueOf(list1.getSelectedItem());
                 String s2 = String.valueOf(list2.getSelectedItem());
                  //converting from kilometer to other units
-                 if (s1.equals("km")){
+                 if (s1.equals("Kilometers | km")){
                      switch(s2){
-                         case "km":
+                         case "Kilometers | km":
                              result = num1;
                              text2.setText(result+"");
                              break;
-                         case "m":
+                         case "Meters | m":
                              result = num1*1000;
                              text2.setText(result+"");
                              break;
-                         case "cm":
+                         case "Centimeters | cm":
                              result = num1*100000;
                              text2.setText(result+"");
                              break;
-                         case "mm":
+                         case "Millimeter | mm":
                                result = num1 * 1000000 ;
                                text2.setText(result+"");
                                break;
                      }
                  }
                  //converting from meter to other units
-                 if(s1.equals("m")){
+                 if(s1.equals("Meters | m")){
                      switch (s2){
-                         case "km":
+                         case "Kilometers | km":
                              result = num1/1000;
                              text2.setText(result+"");
                              break;
-                         case "m":
+                         case "Meters | m":
                              result = num1;
                              text2.setText(result+"");
                              break;
-                         case "cm":
+                         case "Centimeters | cm":
                              result = num1 * 100;
                              text2.setText(result+"");
                              break;
-                         case "mm":
+                         case "Millimeter | mm":
                              result = num1 * 1000;
                              text2.setText(result+"");
                              break;
@@ -184,42 +199,42 @@ public class Length extends JFrame{
                      }
                  }
                  //converting from centimeter to other units
-                 if(s1.equals("cm")){
+                 if(s1.equals("Centimeters | cm")){
                      switch(s2){
-                         case "km":
+                         case "Kilometers | km":
                              result = num1 / 100000;
                              text2.setText(result+"");
                              break;
-                         case "m":
+                         case "Meters | m":
                              result = num1 / 100;
                              text2.setText(result+"");
                              break;
-                         case "cm":
+                         case "Centimeters | cm":
                              result = num1;
                              text2.setText(result+"");
                              break;
-                         case "mm":
+                         case "Millimeter | mm":
                              result = num1 * 10;
                              text2.setText(result+"");
                              break;
                      }
                  }
                  //converting from millimeter to other units
-                 if(s1.equals("mm")){
+                 if(s1.equals("Millimeter | mm")){
                      switch(s2){
-                         case "km":
+                         case "Kilometers | km":
                              result = num1 / 1000000 ;
                              text2.setText(result+"");
                              break;
-                         case "m":
+                         case "Meters | m":
                              result = num1 / 1000;
                              text2.setText(result+"");
                              break;
-                         case "cm":
+                         case "Centimeters | cm":
                              result = num1/10;
                              text2.setText(result+"");
                              break;
-                         case "mm":
+                         case "Millimeter | mm":
                              result = num1;
                              text2.setText(result+"");
                              break;
@@ -229,8 +244,26 @@ public class Length extends JFrame{
              }
             }
              catch(NumberFormatException ee){
-                 JOptionPane.showMessageDialog(null, "Enter a number ya bro!","Error",JOptionPane.ERROR_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "Enter a number!","Error",JOptionPane.ERROR_MESSAGE);
              }
          }
+    }
+    private class SaveButton implements ActionListener{
+        public void actionPerformed (ActionEvent e){
+            try{
+                if(text1.getText().equals("")&&text2.getText().equals(""))
+                    throw new InputException("Missing inputs");
+                String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
+                BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
+                his.write(s+"\n\n");
+                his.close();
+            }
+            catch(IOException e1){
+                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+            }
+            catch(InputException e2){
+                JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }

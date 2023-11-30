@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Home extends JFrame {
-    JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help;
+    JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help, age, currency, bmi;
     JLabel conv;
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 28);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
@@ -33,7 +33,7 @@ public class Home extends JFrame {
          p1.add(conv);
         
          //App buttons
-         JPanel p2 = new JPanel(new GridLayout(3,3));
+         JPanel p2 = new JPanel(new GridLayout(4,3));
          length = new JButton("Length");
          length.setBackground(Color.decode("#a5b0b3"));
          length.setForeground(Color.decode("#36454F"));
@@ -90,7 +90,23 @@ public class Home extends JFrame {
          numSys.setFont(bFonts);
          numSys.setFocusable(false);
          
+         age = new JButton("Age");
+         age.setBackground(Color.decode("#a5b0b3"));
+         age.setForeground(Color.decode("#36454F"));
+         age.setFont(bFonts);
+         age.setFocusable(false);
          
+         currency = new JButton("Currency");
+         currency.setBackground(Color.decode("#a5b0b3"));
+         currency.setForeground(Color.decode("#36454F"));
+         currency.setFont(bFonts);
+         currency.setFocusable(false);
+         
+         bmi = new JButton("BMI");
+         bmi.setBackground(Color.decode("#a5b0b3"));
+         bmi.setForeground(Color.decode("#36454F"));
+         bmi.setFont(bFonts);
+         bmi.setFocusable(false);
          
          p2.add(length);
          p2.add(speed);
@@ -101,7 +117,9 @@ public class Home extends JFrame {
          p2.add(temperature);
          p2.add(time);
          p2.add(numSys);
-         
+         p2.add(age);
+         p2.add(currency);
+         p2.add(bmi);
         // last panel contains help and history
         JPanel p3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p3.setBackground(Color.decode("#36454F"));
@@ -130,22 +148,19 @@ public class Home extends JFrame {
         mainPanel.add((p1),BorderLayout.NORTH);
         mainPanel.add((p2),BorderLayout.CENTER);
         mainPanel.add((p3),BorderLayout.SOUTH);
-        //this.pack();
+        
+        
         this.setVisible(true);
         length.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 Length l = new Length(Home.this); 
-               
-
             }
         });
         mass.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 Mass l = new Mass(Home.this); 
-               
-
             }
         });
         data.addActionListener(new ActionListener(){
