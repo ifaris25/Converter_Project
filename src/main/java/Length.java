@@ -24,8 +24,8 @@ public class Length extends JFrame{
     
     public Length(Home homepage){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                 this.setSize(500,600);
-                 this.setLocation(200,300);
+        this.setSize(500,600);
+        this.setLocation(200,300);
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));

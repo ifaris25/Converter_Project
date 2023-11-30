@@ -200,12 +200,20 @@ public class Home extends JFrame {
             }
         });
         
-        
-        
+
         temperature.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 Temperature l = new Temperature(Home.this); 
+               
+
+            }
+        });
+        
+        date.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Date l = new Date(Home.this); 
                
 
             }
