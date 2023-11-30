@@ -58,5 +58,5 @@ If you encounter any issues or have suggestions/questions, please create an issu
 
 ---
 
-Made by: [Faris, Faris, Mustafa /msallat, AbdAlrhman]
+Made by: [Faris, Faris, Mustafa, AbdAlrhman]
 Thank you for using the Universal Converter Java App! We hope this tool makes your unit conversions hassle-free and efficient.
