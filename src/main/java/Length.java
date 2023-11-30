@@ -135,11 +135,11 @@ public class Length extends JFrame{
     private class Calculate implements ActionListener{
          public void actionPerformed (ActionEvent e){
              double num1,result;
-             num1 = Double.parseDouble(text1.getText());
-             String s1 = String.valueOf(list1.getSelectedItem());
-             String s2 = String.valueOf(list2.getSelectedItem());
              try{                                                           //Check try and catch --it is not working--
              if(e.getSource()==convert){
+                 num1 = Double.parseDouble(text1.getText());
+                String s1 = String.valueOf(list1.getSelectedItem());
+                String s2 = String.valueOf(list2.getSelectedItem());
                  //converting from kilometer to other units
                  if (s1.equals("km")){
                      switch(s2){
