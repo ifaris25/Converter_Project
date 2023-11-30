@@ -135,20 +135,20 @@ public class Temperature extends JFrame {
             String s2 = String.valueOf(list2.getSelectedItem());
             try{
             if(e.getSource()==convert){
-                //converting from Celsius °C to other units   "Celsius °C","Fehrenheit °F","Kelvin K"}
+                //converting from Celsius °C to other units
                 if (s1.equals("Celsius °C")){
                     switch(s2){
                         case "Celsius °C":
                             result = num1;
-                            text2.setText(result+"");
+                            text2.setText(String.format("%.4f", result));
                             break;
                         case "Fehrenheit °F":
-                            result = ((num1*(9/5))+32);
-                            text2.setText(result+"");
+                            result = (num1*9/5) +32;
+                            text2.setText(String.format("%.4f", result));
                             break;
                         case "Kelvin K":
                             result = num1+273.15;
-                            text2.setText(result+"");
+                            text2.setText(String.format("%.4f", result));
                             break;
                     }
                 }
@@ -156,16 +156,16 @@ public class Temperature extends JFrame {
                 if(s1.equals("Fehrenheit °F")){
                     switch (s2){
                         case "Celsius °C":
-                            result = ((num1-32)*(5/9));
-                            text2.setText(result+"");
+                            result = (num1-32)*5/9;
+                            text2.setText(String.format("%.4f", result));
                             break;
                         case "Fehrenheit °F":
                             result = num1;
-                            text2.setText(result+"");
+                            text2.setText(String.format("%.4f", result));
                             break; 
                         case "Kelvin K":
-                            result = (((num1-32)*(5/9))+273.15);
-                            text2.setText(result+"");
+                            result = ((num1-32)*5/9)+273.15;
+                            text2.setText(String.format("%.4f", result));
                             break; 
                     }
                 }
@@ -175,15 +175,15 @@ public class Temperature extends JFrame {
                         case "Celsius °C":
 
                             result = num1 - 273.15;
-                            text2.setText(result+"");
+                            text2.setText(String.format("%.4f", result));
                             break;
                         case "Fehrenheit °F":
-                            result = (((num1-273.15)*(9/5))+32);
-                            text2.setText(result+"");
+                            result = ((num1-273.15)*9/5)+32;
+                            text2.setText(String.format("%.4f", result));
                             break;
                         case "Kelvin K":
                             result = num1;
-                            text2.setText(result+"");
+                            text2.setText(String.format("%.4f", result));
                             break;
                     }
                 }
