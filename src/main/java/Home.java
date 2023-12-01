@@ -151,6 +151,7 @@ public class Home extends JFrame {
         
         
         this.setVisible(true);
+        
         length.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -216,6 +217,19 @@ public class Home extends JFrame {
                 Date l = new Date(Home.this); 
                
 
+            }
+        });
+        
+        history.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                //add read function 
+            }
+        });
+        
+       help.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                 String msg = "This Java application provides a versatile unit converter\nthat allows users to convert various units\nacross different categories including length, mass, speed,\ndiscount, data, date, temperature, time, and more.";
+                 JOptionPane.showMessageDialog(null, msg,"help",JOptionPane.PLAIN_MESSAGE);
             }
         });
      }
