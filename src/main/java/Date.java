@@ -11,15 +11,18 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class Date extends JFrame{
-    JButton back,find_Dif;
+    JButton back,find_Dif,clr;
     JLabel l , fDate, sDate;
     JComboBox fdays, fmonths, sdays, smonths;      
     JTextField year_1, year_2,result;
-    //String days[] = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",""};
     String days[];
     String months[]={"1","2","3","4","5","6","7","8","9","10","11","12"};
     int d=1;
+    int da,mo,ye;
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     Font b1Fonts = new Font(Font.SANS_SERIF,  Font.BOLD, 24);
@@ -152,7 +155,27 @@ public class Date extends JFrame{
         find_Dif.setFocusable(false);
         find_Dif.setBorderPainted(true);
         
+        clr = new JButton("clr");
+        clr.setFont(b1Fonts);
+        clr.setBackground(Color.decode("#a5b0b3"));
+        clr.setForeground(Color.decode("#023020"));
+        clr.setFocusable(false);
+        clr.setBorderPainted(true);
         fDif.add(find_Dif);
+        fDif.add(clr);
+        
+        //result bar
+        JPanel res = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        res.setBackground(Color.decode("#36454F"));
+        result = new JTextField(20);
+        result.setBackground(Color.decode("#a5b0b3"));
+        result.setForeground(Color.decode("#023020"));
+        result.setFont(b1Fonts);
+        result.setEditable(false);
+        
+        
+        
+        res.add(result);
         //main bar
         JPanel p = (JPanel)this.getContentPane();
         p.setLayout(new GridLayout(6,1));
@@ -162,8 +185,64 @@ public class Date extends JFrame{
         p.add(pfd);
         p.add(psd);
         p.add(fDif);
+        p.add(res);
         
         this.setVisible(true);
+        
+        find_Dif.addActionListener(new Calc());
+        clr.addActionListener(new Clr());
     }
     
-}
+    private class Calc implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            try {
+            int firstDay = Integer.parseInt(fdays.getSelectedItem().toString());
+            int firstMonth = Integer.parseInt(fmonths.getSelectedItem().toString());
+            int firstYear = Integer.parseInt(year_1.getText());
+
+            int secondDay = Integer.parseInt(sdays.getSelectedItem().toString());
+            int secondMonth = Integer.parseInt(smonths.getSelectedItem().toString());
+            int secondYear = Integer.parseInt(year_2.getText());
+
+            if (firstYear > secondYear){
+                ye = firstYear - secondYear;
+            }
+            else if(firstYear <= secondYear){
+                ye = secondYear-firstYear;
+            }
+            
+            if(firstMonth > secondMonth){
+                mo = firstMonth - secondMonth;
+            }
+            else if(firstMonth <= secondMonth){
+                mo = secondMonth - firstMonth;
+            }
+            
+            if(firstDay > secondDay){
+                da = firstDay - secondDay;
+            }
+            else if(firstDay <= secondDay){
+                da = secondDay - firstDay;
+            }
+            result.setText(ye+" Years - "+mo+" Months - "+da+" Days");
+            } 
+            catch (NumberFormatException ee) {
+            JOptionPane.showMessageDialog(null, "Invalid inputs","Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+       }
+    
+    private class Clr implements ActionListener{
+        public void actionPerformed (ActionEvent e){
+            fdays.setSelectedIndex(0);
+            sdays.setSelectedIndex(0);
+            fmonths.setSelectedIndex(0);
+            smonths.setSelectedIndex(0);
+            year_1.setText("");
+            year_2.setText("");
+            result.setText("");
+        }
+    }
+    }
+    
+

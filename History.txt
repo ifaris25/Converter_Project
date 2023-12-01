@@ -18,3 +18,7 @@
 
 1 Minute = 1.0 Minute
 
+4 Kilometers | km = 4000.0 Meters | m
+
+45 Kilometers | km = 4.5E7 Millimeter | mm
+

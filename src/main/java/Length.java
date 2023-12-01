@@ -18,6 +18,7 @@ public class Length extends JFrame{
     JTextField text1, text2;
     JButton convert, clr, back ,save;
     JLabel l;
+    boolean isSaved = false;
     String measurments[]={"Kilometers | km","Meters | m","Centimeters | cm","Millimeter | mm"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
@@ -155,6 +156,7 @@ public class Length extends JFrame{
                  num1 = Double.parseDouble(text1.getText());
                 String s1 = String.valueOf(list1.getSelectedItem());
                 String s2 = String.valueOf(list2.getSelectedItem());
+                isSaved = true;
                  //converting from kilometer to other units
                  if (s1.equals("Kilometers | km")){
                      switch(s2){
@@ -253,10 +255,17 @@ public class Length extends JFrame{
             try{
                 if(text1.getText().equals("")&&text2.getText().equals(""))
                     throw new InputException("Missing inputs");
+                if(isSaved == true){
                 String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
                 BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
                 his.write(s+"\n\n");
                 his.close();
+                isSaved = false;
+                JOptionPane.showMessageDialog(null,"Successful save!","Done",JOptionPane.PLAIN_MESSAGE);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"You can't save without converting first","Saving Failed!",JOptionPane.ERROR_MESSAGE);
+                }
             }
             catch(IOException e1){
                 JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
