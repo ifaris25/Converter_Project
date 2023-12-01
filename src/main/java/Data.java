@@ -27,7 +27,7 @@ public class Data extends JFrame {
 
         p1.setBackground(Color.decode("#36454F"));
                
-        back = new JButton ("BACK");
+        back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
         back.setBackground(Color.decode("#36454F"));
