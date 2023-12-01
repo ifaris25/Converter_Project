@@ -2,3 +2,19 @@
 
 5 Meters | m = 0.005 Kilometers | km
 
+10 meter/second = 6.213727366498068 mile/hour
+
+10 meter/second = 600.0 meter/minute
+
+1 meter/second = 1.0 meter/second
+
+ meter/second = 1.0 meter/second
+
+10 meter/second = 36.0 kilometer/hour
+
+1 meter/second = 0.6213727366498067 mile/hour
+
+110101 Binary = 53.0 Decimal
+
+1 Minute = 1.0 Minute
+

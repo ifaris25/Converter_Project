@@ -6,10 +6,14 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +29,7 @@ import javax.swing.JTextField;
 public class Speed extends JFrame{
      JComboBox list1, list2;
     JTextField text1, text2;
-    JButton convert, clr, back;
+    JButton convert, clr, back,save;
     JLabel l;
     String measurments[]={"meter/second","kilometer/hour","mile/hour","meter/hour", "meter/minute"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
@@ -42,7 +46,7 @@ public class Speed extends JFrame{
 
         p1.setBackground(Color.decode("#36454F"));
                
-        back = new JButton ("BACK");
+        back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
         back.setBackground(Color.decode("#36454F"));
@@ -117,18 +121,31 @@ public class Speed extends JFrame{
         clr.setFocusable(false);
         clr.setBorderPainted(false);
         clr.addActionListener(new Action());
+        
+        
+        JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+       p6.setBackground(Color.decode("#36454F"));
+       save = new JButton("save");
+       save.setFont(bFonts);
+       save.setBackground(Color.decode("#36454F"));
+       save.setForeground(Color.decode("#fafeff"));
+       save.setFocusable(false);
+       save.setBorderPainted(false);
+       save.addActionListener(new Action());
+       p6.add(save);
        
         p5.add(convert);
         p5.add(clr);
         //main bar
         JPanel p = (JPanel)this.getContentPane();
-        p.setLayout(new GridLayout(5,1));
+        p.setLayout(new GridLayout(6,1));
         p.setBackground(Color.decode("#36454F"));
         p.add(p1);
         p.add(pLabel);
         p.add(p2);
         p.add(p3);
         p.add(p5);
+        p.add(p6);
         this.setVisible(true);//
         
         //action listeners call
@@ -141,68 +158,90 @@ public class Speed extends JFrame{
                 text2.setText("");
                 
             }
+            if(e.getSource()==save){
+                try{
+                if(text1.getText().equals("") || text2.getText().equals(""))
+                    throw new InputException("Missing inputs");
+                    String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
+                    BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
+                    his.write(s+"\n\n");
+                    his.close();
+                    JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(IOException e1){
+                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+            }
+            catch(InputException e2){
+                JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            }
+            }
             if(e.getSource()==convert){
-//            String measurments[]={"meter/second","kilometer/hour","mile/hour","meter/hour", "meter/minute"};
-                double num1,result=0;
-                num1 = Double.parseDouble(text1.getText());
-                String s1 = String.valueOf(list1.getSelectedItem());
-                String s2 = String.valueOf(list2.getSelectedItem());
-                
-               switch (s1) {
-                    case "meter/second":
-                        switch (s2) {
-                            case "meter/second": result = num1; break;
-                            case "kilometer/hour": result = num1 * 3.6; break;
-                            case "mile/hour": result = num1 / 1.60934; break;
-                            case "meter/hour": result = num1 * 3600; break;
-                            case "meter/minute": result = num1 * 60; break;
-                        }
-                        break;
+                try{
+                    double num1,result=0;
+                    num1 = Double.parseDouble(text1.getText());
+                    String s1 = String.valueOf(list1.getSelectedItem());
+                    String s2 = String.valueOf(list2.getSelectedItem());
 
-                    case "kilometer/hour":
-                        switch (s2) {
-                            case "meter/second": result = num1 / 3.6; break;
-                            case "kilometer/hour": result = num1; break;
-                            case "mile/hour": result = num1 / 1.60934; break;
-                            case "meter/hour": result = num1 * 1000; break;
-                            case "meter/minute": result = num1 * 16.6667; break;
-                        }
-                        break;
+                   switch (s1) {
+                        case "meter/second":
+                            switch (s2) {
+                                case "meter/second": result = num1; break;
+                                case "kilometer/hour": result = num1 * 3.6; break;
+                                case "mile/hour": result = num1 / 1.60934; break;
+                                case "meter/hour": result = num1 * 3600; break;
+                                case "meter/minute": result = num1 * 60; break;
+                            }
+                            break;
 
-                    case "mile/hour":
-                        switch (s2) {
-                            case "meter/second": result = num1 * 1.60934 / 3.6; break;
-                            case "kilometer/hour": result = num1 * 1.60934; break;
-                            case "mile/hour": result = num1; break;
-                            case "meter/hour": result = num1 * 1609.34; break;
-                            case "meter/minute": result = num1 * 26.8224; break;
-                        }
-                        break;
+                        case "kilometer/hour":
+                            switch (s2) {
+                                case "meter/second": result = num1 / 3.6; break;
+                                case "kilometer/hour": result = num1; break;
+                                case "mile/hour": result = num1 / 1.60934; break;
+                                case "meter/hour": result = num1 * 1000; break;
+                                case "meter/minute": result = num1 * 16.6667; break;
+                            }
+                            break;
 
-                    case "meter/hour":
-                        switch (s2) {
-                            case "meter/second": result = num1 / 3600; break;
-                            case "kilometer/hour": result = num1 / 1000; break;
-                            case "mile/hour": result = num1 / 1609.34; break;
-                            case "meter/hour": result = num1; break;
-                            case "meter/minute": result = num1 / 60; break;
-                        }
-                        break;
+                        case "mile/hour":
+                            switch (s2) {
+                                case "meter/second": result = num1 * 1.60934 / 3.6; break;
+                                case "kilometer/hour": result = num1 * 1.60934; break;
+                                case "mile/hour": result = num1; break;
+                                case "meter/hour": result = num1 * 1609.34; break;
+                                case "meter/minute": result = num1 * 26.8224; break;
+                            }
+                            break;
 
-                    case "meter/minute":
-                        switch (s2) {
-                            case "meter/second": result = num1 / 60; break;
-                            case "kilometer/hour": result = num1 / 16.6667; break;
-                            case "mile/hour": result = num1 / 26.8224; break;
-                            case "meter/hour": result = num1 * 60; break;
-                            case "meter/minute": result = num1; break;
-                        }
-                        break;
+                        case "meter/hour":
+                            switch (s2) {
+                                case "meter/second": result = num1 / 3600; break;
+                                case "kilometer/hour": result = num1 / 1000; break;
+                                case "mile/hour": result = num1 / 1609.34; break;
+                                case "meter/hour": result = num1; break;
+                                case "meter/minute": result = num1 / 60; break;
+                            }
+                            break;
+
+                        case "meter/minute":
+                            switch (s2) {
+                                case "meter/second": result = num1 / 60; break;
+                                case "kilometer/hour": result = num1 / 16.6667; break;
+                                case "mile/hour": result = num1 / 26.8224; break;
+                                case "meter/hour": result = num1 * 60; break;
+                                case "meter/minute": result = num1; break;
+                            }
+                            break;
+                    }
+
+                    text2.setText(result+"");
+
+
                 }
-
-                text2.setText(result+"");
-
-                
+                catch(Exception e1){
+                    JOptionPane.showMessageDialog(null, "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
             }
             
         }
