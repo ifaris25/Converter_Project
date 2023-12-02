@@ -155,7 +155,7 @@ public class Home extends JFrame {
         length.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Length l = new Length(Home.this); 
+                Length l = new Length(Home.this,"Length"); 
             }
         });
         mass.addActionListener(new ActionListener(){
@@ -214,7 +214,7 @@ public class Home extends JFrame {
         date.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Date l = new Date(Home.this); 
+                Date l = new Date(Home.this,"Date"); 
                
 
             }

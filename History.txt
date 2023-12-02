@@ -22,3 +22,13 @@
 
 45 Kilometers | km = 4.5E7 Millimeter | mm
 
+5 Kilometers | km = 4.0 Kilometers | km
+
+1 Kilometers | km = 2.0 Kilometers | km
+
+4 Kilometers | km = 4.0 Kilometers | km
+
+1 Kilometers | km = 100000.0 Centimeters | cm
+
+74 Kilometers | km = 74.0 Kilometers | km
+

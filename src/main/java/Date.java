@@ -26,7 +26,8 @@ public class Date extends JFrame{
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     Font b1Fonts = new Font(Font.SANS_SERIF,  Font.BOLD, 24);
-    public Date(Home homepage){
+    public Date(Home homepage,String s){
+        super(s);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
         this.setLocation(200,300);
@@ -101,14 +102,14 @@ public class Date extends JFrame{
         fLists.add(year_1);
         
         //First date components
-        JPanel pfd = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel pfd = new JPanel(new FlowLayout(FlowLayout.CENTER));
         pfd.setBackground(Color.decode("#36454F"));
         
         pfd.add(fD);
         pfd.add(fLists);
         
         //second date label bar
-        JPanel sD = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel sD = new JPanel(new FlowLayout(FlowLayout.CENTER));
         sD.setBackground(Color.decode("#36454F"));
         sDate = new JLabel("Second date");
         sDate.setFont(b1Fonts);
@@ -139,7 +140,7 @@ public class Date extends JFrame{
         sLists.add(smonths);
         sLists.add(year_2);
         //second date components
-        JPanel psd = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel psd = new JPanel(new FlowLayout(FlowLayout.CENTER));
         psd.setBackground(Color.decode("#36454F"));
         
         psd.add(sD);
