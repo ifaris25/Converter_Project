@@ -332,24 +332,4 @@ public class Data extends JFrame {
             }
         }
     }
-    private class SaveButton implements ActionListener{
-        public void actionPerformed (ActionEvent e){
-            try{
-                if(text1.getText().equals("") || text2.getText().equals(""))
-                    throw new InputException("Missing inputs");
-                if(isSaved == false){
-                isSaved = false;
-                    String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
-                    BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
-                    his.write(s+"\n\n");
-                    his.close();
-                    JOptionPane.showMessageDialog(null,"Successful save!","Done",JOptionPane.PLAIN_MESSAGE);
-                }
-            } catch (IOException e1) {
-                
-            } catch(InputException e2) {
-                    
-            }
-        }
-    }
 }
