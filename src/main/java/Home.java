@@ -223,17 +223,7 @@ public class Home extends JFrame {
         
         history.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                try {
-                    File historyFile = new File("History.txt"); 
-                    if (historyFile.exists()) {
-                        Desktop.getDesktop().open(historyFile);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "History file not found.", "File Not Found", JOptionPane.ERROR_MESSAGE);
-                    }
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
+                
             }
         });
         

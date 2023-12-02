@@ -2,15 +2,17 @@
  *
  * @author MUSTAFA
  */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class Temperature extends JFrame {
     
     JComboBox list1, list2;
     JTextField text1, text2;
-    JButton convert, clr, back;
+    JButton convert, clr, back, save;
     JLabel l;
     String measurments[]={"Celsius | °C","Fehrenheit | °F","Kelvin | K"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
@@ -18,8 +20,9 @@ public class Temperature extends JFrame {
     
     public Temperature(Home homepage){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.setSize(500,600);
-                this.setLocation(200,300);
+        this.setSize(500,600);
+        this.setLocation(200,300);
+        this.setTitle("Temperatura");
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -30,8 +33,8 @@ public class Temperature extends JFrame {
         back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
-        back.setBackground(Color.decode("#36454F"));
-        back.setForeground(Color.decode("#fafeff"));
+        back.setBackground(Color.decode("#B6BBC4"));
+        back.setForeground(Color.decode("#31304D"));
         back.setBorderPainted(false);
         back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -87,33 +90,44 @@ public class Temperature extends JFrame {
         //functions bar
         JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p5.setBackground(Color.decode("#36454F"));
-        convert = new JButton("convert");
+        convert = new JButton("Convert");
         convert.setFont(bFonts);
-        convert.setBackground(Color.decode("#36454F"));
-        convert.setForeground(Color.decode("#fafeff"));
+        convert.setBackground(Color.decode("#B6BBC4"));
+        convert.setForeground(Color.decode("#31304D"));
         convert.setFocusable(false);
         convert.setBorderPainted(false);
        
-        clr = new JButton("clr");
+        clr = new JButton("Clear");
         clr.setFont(bFonts);
-        clr.setBackground(Color.decode("#36454F"));
-        clr.setForeground(Color.decode("#fafeff"));
+        clr.setBackground(Color.decode("#B6BBC4"));
+        clr.setForeground(Color.decode("#31304D"));
         clr.setFocusable(false);
         clr.setBorderPainted(false);
        
         p5.add(convert);
         p5.add(clr);
+        
+        JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+       p6.setBackground(Color.decode("#36454F"));
+       save = new JButton("Save");
+       save.setFont(bFonts);
+       save.setBackground(Color.decode("#B6BBC4"));
+       save.setForeground(Color.decode("#31304D"));
+       save.setFocusable(false);
+       save.setBorderPainted(false);
+       p6.add(save);
+       
         //main bar
         JPanel p = (JPanel)this.getContentPane();
-        p.setLayout(new GridLayout(5,1));
+        p.setLayout(new GridLayout(6,1));
         p.setBackground(Color.decode("#36454F"));
         p.add(p1);
         p.add(pLabel);
         p.add(p2);
         p.add(p3);
         p.add(p5);
+        p.add(p6);
         this.setVisible(true);//
-        
         //action listeners call
         clr.addActionListener(new ClearText());
         convert.addActionListener(new Calculate());
