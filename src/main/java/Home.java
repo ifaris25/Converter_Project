@@ -11,6 +11,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class Home extends JFrame {
     JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help, age, currency, bmi;
@@ -222,7 +223,17 @@ public class Home extends JFrame {
         
         history.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                //add read function 
+                try {
+                    File historyFile = new File("History.txt"); 
+                    if (historyFile.exists()) {
+                        Desktop.getDesktop().open(historyFile);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "History file not found.", "File Not Found", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
             }
         });
         

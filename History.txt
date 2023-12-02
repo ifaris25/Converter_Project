@@ -32,3 +32,5 @@
 
 74 Kilometers | km = 74.0 Kilometers | km
 
+40 Kilometers | km = 4000000.0 Centimeters | cm
+
