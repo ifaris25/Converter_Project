@@ -34,3 +34,21 @@
 
 40 Kilometers | km = 4000000.0 Centimeters | cm
 
+2 Kilometers | km = 2000.0 Meters | m
+
+1 Tonne | T = 1000000.0 Gram | G
+
+1.3 Tonne | T = 2866.5 Pound | Lb
+
+23 Celsius | °C = 73.4000 Fehrenheit | °F
+
+1 Terabyte | TB = 1000.0 Gigabyte | GB
+
+8 Tonne | T = 17640.0 Pound | Lb
+
+3 Tonne | T = 3000.0 Kilogram | Kg
+
+34 Gigabyte | GB = 34000.0 Megabyte | MB
+
+4 Celsius | °C = 277.1500 Kelvin | K
+
