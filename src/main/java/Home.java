@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Faris-Almokayad
+ * 
  */
 import javax.swing.*;
 import java.awt.*;
@@ -159,12 +154,14 @@ public class Home extends JFrame {
                 Length l = new Length(Home.this,"Length"); 
             }
         });
+        
         mass.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 Mass l = new Mass(Home.this); 
             }
         });
+        
         data.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -173,6 +170,7 @@ public class Home extends JFrame {
 
             }
         });
+        
         time.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -181,8 +179,7 @@ public class Home extends JFrame {
 
             }
         });
-        
-        
+          
         speed.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -191,7 +188,6 @@ public class Home extends JFrame {
 
             }
         });
-        
         
         numSys.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -202,7 +198,6 @@ public class Home extends JFrame {
             }
         });
         
-
         temperature.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -223,20 +218,21 @@ public class Home extends JFrame {
         
         history.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                
+                setVisible(false);
+                History h = new History(Home.this); 
             }
         });
         
-       help.addActionListener(new ActionListener(){
+        help.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                  String msg = "This Java application provides a versatile unit converter\nthat allows users to convert various units\nacross different categories including length, mass, speed,\ndiscount, data, date, temperature, time, and more.";
                  JOptionPane.showMessageDialog(null, msg,"help",JOptionPane.PLAIN_MESSAGE);
             }
         });
      }
-    public static void main(String[] args){
-        Home f1 = new Home("Home");//
-     }
     
+    public static void main(String[] args){
+        Home f1 = new Home("Home");
+    }
 }
 

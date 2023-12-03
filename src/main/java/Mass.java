@@ -1,6 +1,7 @@
 /**
  *
  * @author MUSTAFA
+ * 
  */
 
 import javax.swing.*;
@@ -10,24 +11,28 @@ import java.io.*;
 
 public class Mass extends JFrame {
     
+    JLabel title;
+    
     JComboBox list1, list2;
+    String measurments[] = {"Tonne | T", "Kilogram | Kg", "Gram | G", "Pound | Lb", "Ounce | Oz"};
+
     JTextField text1, text2;
-    JButton convert, clr, back, save;
-    JLabel l;
+    
+    JButton convert, clear, back, save;
+    
     boolean isSaved = false;
-    String measurments[]={"Tonne | T","Kilogram | Kg","Gram | G","Pound | Lb", "Ounce | Oz"};
+    
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
-    public Mass(Home homepage){
+    public Mass(Home homepage) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
         this.setLocation(200,300);
         this.setTitle("Mass");
+        
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-
         p1.setBackground(Color.decode("#36454F"));
                
         back = new JButton ("Back");
@@ -36,21 +41,22 @@ public class Mass extends JFrame {
         back.setBackground(Color.decode("#B6BBC4"));
         back.setForeground(Color.decode("#31304D"));
         back.setBorderPainted(false);
-        back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
+        
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 setVisible(false);
                 homepage.setVisible(true);
             }
         });
         
         p1.add(back);
+        
         JPanel pLabel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         pLabel.setBackground(Color.decode("#36454F"));
-        l = new JLabel("Mass");
-        l.setFont(labelFont);
-        l.setForeground(Color.decode("#fafeff"));
-        
-        pLabel.add(l);
+        title = new JLabel("Mass");
+        title.setFont(labelFont);
+        title.setForeground(Color.decode("#fafeff"));
+        pLabel.add(title);
         
         //First bar
         JPanel p2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -97,25 +103,25 @@ public class Mass extends JFrame {
         convert.setFocusable(false);
         convert.setBorderPainted(false);
        
-        clr = new JButton("Clear");
-        clr.setFont(bFonts);
-        clr.setBackground(Color.decode("#B6BBC4"));
-        clr.setForeground(Color.decode("#31304D"));
-        clr.setFocusable(false);
-        clr.setBorderPainted(false);
-       
+        clear = new JButton("Clear");
+        clear.setFont(bFonts);
+        clear.setBackground(Color.decode("#B6BBC4"));
+        clear.setForeground(Color.decode("#31304D"));
+        clear.setFocusable(false);
+        clear.setBorderPainted(false);
+
         p5.add(convert);
-        p5.add(clr);
+        p5.add(clear);
         
-       JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-       p6.setBackground(Color.decode("#36454F"));
-       save = new JButton("Save");
-       save.setFont(bFonts);
-       save.setBackground(Color.decode("#B6BBC4"));
-       save.setForeground(Color.decode("#31304D"));
-       save.setFocusable(false);
-       save.setBorderPainted(false);
-       p6.add(save);
+        JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        p6.setBackground(Color.decode("#36454F"));
+        save = new JButton("Save");
+        save.setFont(bFonts);
+        save.setBackground(Color.decode("#B6BBC4"));
+        save.setForeground(Color.decode("#31304D"));
+        save.setFocusable(false);
+        save.setBorderPainted(false);
+        p6.add(save);
        
         //main bar
         JPanel p = (JPanel)this.getContentPane();
@@ -127,160 +133,184 @@ public class Mass extends JFrame {
         p.add(p3);
         p.add(p5);
         p.add(p6);
-        this.setVisible(true);//
+        this.setVisible(true);
         
         //action listeners call
-        clr.addActionListener(new ClearText());
-        convert.addActionListener(new Calculate());
-    }
-    private class ClearText implements ActionListener{
-        public void actionPerformed (ActionEvent e){
-            if(e.getSource()==clr){ // no need for check ,because this method will apply only when clr is active ...Faris25 :)
+        /*---*/
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 text1.setText("");
                 text2.setText("");
-                
             }
-        }
-    }
-    private class Calculate implements ActionListener{
-        public void actionPerformed (ActionEvent e){
-            double num1,result;
-            num1 = Double.parseDouble(text1.getText());
-            String s1 = String.valueOf(list1.getSelectedItem());
-            String s2 = String.valueOf(list2.getSelectedItem());
-            try{
-            if(e.getSource()==convert){ // same as line 124 no need ... Ifaris25 (:
-                //converting from Tonne to other units
-                if (s1.equals("Tonne | T")){
-                    switch(s2){
-                        case "Tonne | T":
-                            result = num1;
-                            text2.setText(result+"");
-                            break;
-                        case "Kilogram | Kg":
-                            result = num1*1000;
-                            text2.setText(result+"");
-                            break;
-                        case "Gram | G":
-                            result = num1*1000000;
-                            text2.setText(result+"");
-                            break;
-                        case "Pound | Lb":
-                            result = num1 * 2205;
-                            text2.setText(result+"");
-                            break;
-                        case "Ounce | Oz":
-                            result = num1 * 35270;
-                            text2.setText(result+"");
-                            break;
+        });
+        
+        /*---*/
+        convert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num1,result;
+                try {
+                    num1 = Double.parseDouble(text1.getText());
+                    String s1 = String.valueOf(list1.getSelectedItem());
+                    String s2 = String.valueOf(list2.getSelectedItem());
+                    isSaved = true;
+                    if (s1.equals("Tonne | T")) {
+                        switch(s2) {
+                            case "Tonne | T":
+                                result = num1;
+                                text2.setText(result + "");
+                                break;
+                            case "Kilogram | Kg":
+                                result = num1 * 1000;
+                                text2.setText(result + "");
+                                break;
+                            case "Gram | G":
+                                result = num1 * 1000000;
+                                text2.setText(result + "");
+                                break;
+                            case "Pound | Lb":
+                                result = num1 * 2205;
+                                text2.setText(result + "");
+                                break;
+                            case "Ounce | Oz":
+                                result = num1 * 35270;
+                                text2.setText(result + "");
+                                break;
+                        }
+                    }
+                    //converting from Kilogram to other units
+                    if(s1.equals("Kilogram | Kg")) {
+                        switch (s2){
+                            case "Tonne | T":
+                                result = num1 / 1000;
+                                text2.setText(result + "");
+                                break;
+                            case "Kilogram | Kg":
+                                result = num1;
+                                text2.setText(result + "");
+                                break;
+                            case "Gram | G":
+                                result = num1 * 1000;
+                                text2.setText(result + "");
+                                break;
+                            case "Pound | Lb":
+                                result = num1 * 2.205;
+                                text2.setText(result + "");
+                                break;
+                            case "Ounce | Oz":
+                                result = num1 * 35.274;
+                                text2.setText(result + "");
+                                break; 
+                        }
+                    }
+                    //converting from Gram to other units
+                    if(s1.equals("Gram | G")) {
+                        switch(s2) {
+                            case "Tonne | T":
+                                result = num1 / 1000000;
+                                text2.setText(result + "");
+                                break;
+                            case "Kilogram | Kg":
+                                result = num1 / 1000;
+                                text2.setText(result + "");
+                                break;
+                            case "Gram | G":
+                                result = num1;
+                                text2.setText(result + "");
+                                break;
+                            case "Pound | Lb":
+                                result = num1 / 453.6;
+                                text2.setText(result + "");
+                                break;
+                            case "Ounce | Oz":
+                                result = num1 / 28.35;
+                                text2.setText(result + "");
+                                break; 
+                        }
+                    }
+                    //converting from Pound to other units
+                    if(s1.equals("Pound | Lb")){
+                        switch(s2){
+                            case "Tonne | T":
+                                result = num1 / 2205 ;
+                                text2.setText(result + "");
+                                break;
+                            case "Kilogram | Kg":
+                                result = num1 / 2.205;
+                                text2.setText(result + "");
+                                break;
+                            case "Gram | G":
+                                result = num1 * 453.6;
+                                text2.setText(result + "");
+                                break;
+                            case "Pound | Lb":
+                                result = num1;
+                                text2.setText(result + "");
+                                break;
+                            case "Ounce | Oz":
+                                result = num1 * 16;
+                                text2.setText(result + "");
+                                break; 
+                        }
+                    }
+                    //converting from Ounce to other units
+                    if(s1.equals("Ounce | Oz")) {
+                        switch(s2) {
+                            case "Tonne | T":
+                                result = num1 / 35270 ;
+                                text2.setText(result + "");
+                                break;
+                            case "Kilogram | Kg":
+                                result = num1 / 35.274;
+                                text2.setText(result + "");
+                                break;
+                            case "Gram | G":
+                                result = num1 * 28.35;
+                                text2.setText(result + "");
+                                break;
+                            case "Pound | Lb":
+                                result = num1 / 16;
+                                text2.setText(result + "");
+                                break;
+                            case "Ounce | Oz":
+                                result = num1;
+                                text2.setText(result + "");
+                                break; 
+                        }
                     }
                 }
-                //converting from Kilogram to other units
-                if(s1.equals("Kilogram | Kg")){
-                    switch (s2){
-                        case "Tonne | T":
-                            result = num1/1000;
-                            text2.setText(result+"");
-                            break;
-                        case "Kilogram | Kg":
-                            result = num1;
-                            text2.setText(result+"");
-                            break;
-                        case "Gram | G":
-                            result = num1 * 1000;
-                            text2.setText(result+"");
-                            break;
-                        case "Pound | Lb":
-                            result = num1 * 2.205;
-                            text2.setText(result+"");
-                            break;
-                        case "Ounce | Oz":
-                            result = num1 * 35.274;
-                            text2.setText(result+"");
-                            break; 
-                    }
+                catch(NumberFormatException ee) {
+                    JOptionPane.showMessageDialog(null, "Enter a number!","Error",JOptionPane.ERROR_MESSAGE);
                 }
-                //converting from Gram to other units
-                if(s1.equals("Gram | G")){
-                    switch(s2){
-                        case "Tonne | T":
-                            result = num1 / 1000000;
-                            text2.setText(result+"");
-                            break;
-                        case "Kilogram | Kg":
-                            result = num1 / 1000;
-                            text2.setText(result+"");
-                            break;
-                        case "Gram | G":
-                            result = num1;
-                            text2.setText(result+"");
-                            break;
-                        case "Pound | Lb":
-                            result = num1 / 453.6;
-                            text2.setText(result+"");
-                            break;
-                        case "Ounce | Oz":
-                            result = num1 / 28.35;
-                            text2.setText(result+"");
-                            break; 
-                    }
-                }
-                //converting from Pound to other units
-                if(s1.equals("Pound | Lb")){
-                    switch(s2){
-                        case "Tonne | T":
-                            result = num1 / 2205 ;
-                            text2.setText(result+"");
-                            break;
-                        case "Kilogram | Kg":
-                            result = num1 / 2.205;
-                            text2.setText(result+"");
-                            break;
-                        case "Gram | G":
-                            result = num1 * 453.6;
-                            text2.setText(result+"");
-                            break;
-                        case "Pound | Lb":
-                            result = num1;
-                            text2.setText(result+"");
-                            break;
-                        case "Ounce | Oz":
-                            result = num1 * 16;
-                            text2.setText(result+"");
-                            break; 
-                    }
-                }
-                //converting from Ounce to other units
-                if(s1.equals("Ounce | Oz")){
-                    switch(s2){
-                        case "Tonne | T":
-                            result = num1 / 35270 ;
-                            text2.setText(result+"");
-                            break;
-                        case "Kilogram | Kg":
-                            result = num1 / 35.274;
-                            text2.setText(result+"");
-                            break;
-                        case "Gram | G":
-                            result = num1 * 28.35;
-                            text2.setText(result+"");
-                            break;
-                        case "Pound | Lb":
-                            result = num1 / 16;
-                            text2.setText(result+"");
-                            break;
-                        case "Ounce | Oz":
-                            result = num1;
-                            text2.setText(result+"");
-                            break; 
-                    }
-                }
-                //end of converting
             }
+        });
+        
+        /*---*/
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if(text1.getText().equals("") && text2.getText().equals(""))
+                        throw new InputException("Error: Missing inputs");
+                    if(isSaved == true) {
+                        isSaved = false;
+                        String operation = text1.getText() + " " + String.valueOf(list1.getSelectedItem()) + " = " + text2.getText() + " " + String.valueOf(list2.getSelectedItem());
+                        BufferedWriter file = new BufferedWriter(new FileWriter("History.txt",true));
+                        file.write(operation+"\n\n");
+                        file.close();
+                        JOptionPane.showMessageDialog(null,"Successful Save!","Done",JOptionPane.PLAIN_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Error: You can't save without converting first","Saving Failed!",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                catch(IOException e1) {
+                    JOptionPane.showMessageDialog(null, "I/O Error","Save failed!",JOptionPane.ERROR_MESSAGE);
+                }
+                catch(InputException e2) {
+                    JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
-            catch(NumberFormatException ee){
-                JOptionPane.showMessageDialog(null, "Enter a number ya bro!","Error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
+        });
+    }   
 }

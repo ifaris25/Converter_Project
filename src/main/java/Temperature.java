@@ -1,6 +1,7 @@
 /**
  *
  * @author MUSTAFA
+ * 
  */
 
 import javax.swing.*;
@@ -10,15 +11,21 @@ import java.io.*;
 
 public class Temperature extends JFrame {
     
+    JLabel title;
+    
     JComboBox list1, list2;
+    String measurments[] = {"Celsius | °C", "Fehrenheit | °F", "Kelvin | K"};
+    
     JTextField text1, text2;
-    JButton convert, clr, back, save;
-    JLabel l;
-    String measurments[]={"Celsius | °C","Fehrenheit | °F","Kelvin | K"};
+    
+    JButton convert, clear, back, save;
+
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
-    
-    public Temperature(Home homepage){
+
+    boolean isSaved = false;
+
+    public Temperature(Home homepage) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
         this.setLocation(200,300);
@@ -26,8 +33,6 @@ public class Temperature extends JFrame {
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-
         p1.setBackground(Color.decode("#36454F"));
                
         back = new JButton ("Back");
@@ -36,8 +41,9 @@ public class Temperature extends JFrame {
         back.setBackground(Color.decode("#B6BBC4"));
         back.setForeground(Color.decode("#31304D"));
         back.setBorderPainted(false);
-        back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
+        
+        back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 setVisible(false);
                 homepage.setVisible(true);
             }
@@ -46,11 +52,11 @@ public class Temperature extends JFrame {
         p1.add(back);
         JPanel pLabel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         pLabel.setBackground(Color.decode("#36454F"));
-        l = new JLabel("Temperature");
-        l.setFont(labelFont);
-        l.setForeground(Color.decode("#fafeff"));
+        title = new JLabel("Temperature");
+        title.setFont(labelFont);
+        title.setForeground(Color.decode("#fafeff"));
         
-        pLabel.add(l);
+        pLabel.add(title);
         
         //First bar
         JPanel p2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -97,25 +103,25 @@ public class Temperature extends JFrame {
         convert.setFocusable(false);
         convert.setBorderPainted(false);
        
-        clr = new JButton("Clear");
-        clr.setFont(bFonts);
-        clr.setBackground(Color.decode("#B6BBC4"));
-        clr.setForeground(Color.decode("#31304D"));
-        clr.setFocusable(false);
-        clr.setBorderPainted(false);
+        clear = new JButton("Clear");
+        clear.setFont(bFonts);
+        clear.setBackground(Color.decode("#B6BBC4"));
+        clear.setForeground(Color.decode("#31304D"));
+        clear.setFocusable(false);
+        clear.setBorderPainted(false);
        
         p5.add(convert);
-        p5.add(clr);
+        p5.add(clear);
         
         JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-       p6.setBackground(Color.decode("#36454F"));
-       save = new JButton("Save");
-       save.setFont(bFonts);
-       save.setBackground(Color.decode("#B6BBC4"));
-       save.setForeground(Color.decode("#31304D"));
-       save.setFocusable(false);
-       save.setBorderPainted(false);
-       p6.add(save);
+        p6.setBackground(Color.decode("#36454F"));
+        save = new JButton("Save");
+        save.setFont(bFonts);
+        save.setBackground(Color.decode("#B6BBC4"));
+        save.setForeground(Color.decode("#31304D"));
+        save.setFocusable(false);
+        save.setBorderPainted(false);
+        p6.add(save);
        
         //main bar
         JPanel p = (JPanel)this.getContentPane();
@@ -127,86 +133,110 @@ public class Temperature extends JFrame {
         p.add(p3);
         p.add(p5);
         p.add(p6);
-        this.setVisible(true);//
-        //action listeners call
-        clr.addActionListener(new ClearText());
-        convert.addActionListener(new Calculate());
-    }
-    private class ClearText implements ActionListener{
-        public void actionPerformed (ActionEvent e){
-            if(e.getSource()==clr){
+        this.setVisible(true);
+        
+        /*---*/
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 text1.setText("");
                 text2.setText("");
-                
             }
-        }
-    }
-    private class Calculate implements ActionListener{
-        public void actionPerformed (ActionEvent e){
-            double num1,result;
-            num1 = Double.parseDouble(text1.getText());
-            String s1 = String.valueOf(list1.getSelectedItem());
-            String s2 = String.valueOf(list2.getSelectedItem());
-            try{
-            if(e.getSource()==convert){
-                //converting from Celsius °C to other units
-                if (s1.equals("Celsius | °C")){
-                    switch(s2){
-                        case "Celsius | °C":
-                            result = num1;
-                            text2.setText(String.format("%.4f", result));
-                            break;
-                        case "Fehrenheit | °F":
-                            result = (num1*9/5) +32;
-                            text2.setText(String.format("%.4f", result));
-                            break;
-                        case "Kelvin | K":
-                            result = num1+273.15;
-                            text2.setText(String.format("%.4f", result));
-                            break;
+        });
+        
+        /*---*/
+        convert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num1,result;
+                try {
+                    num1 = Double.parseDouble(text1.getText());
+                    String s1 = String.valueOf(list1.getSelectedItem());
+                    String s2 = String.valueOf(list2.getSelectedItem());
+                    isSaved = true;
+                    //converting from Celsius °C to other units
+                    if (s1.equals("Celsius | °C")) {
+                        switch(s2) {
+                            case "Celsius | °C":
+                                result = num1;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                            case "Fehrenheit | °F":
+                                result = (num1*9/5) + 32;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                            case "Kelvin | K":
+                                result = num1 + 273.15;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                        }
+                    }
+                    //converting from Fehrenheit °F to other units
+                    if(s1.equals("Fehrenheit | °F")) {
+                        switch (s2) {
+                            case "Celsius | °C":
+                                result = (num1 - 32) * 5 / 9;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                            case "Fehrenheit | °F":
+                                result = num1;
+                                text2.setText(String.format("%.4f", result));
+                                break; 
+                            case "Kelvin | K":
+                                result = ( (num1-32) * 5 / 9 ) + 273.15;
+                                text2.setText(String.format("%.4f", result));
+                                break; 
+                        }
+                    }
+                    //converting from Kelvin K to other units
+                    if(s1.equals("Kelvin | K")) {
+                        switch(s2){
+                            case "Celsius | °C":
+                                result = num1 - 273.15;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                            case "Fehrenheit | °F":
+                                result = ( (num1 - 273.15) * 9 / 5) + 32;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                            case "Kelvin | K":
+                                result = num1;
+                                text2.setText(String.format("%.4f", result));
+                                break;
+                        }
                     }
                 }
-                //converting from Fehrenheit °F to other units
-                if(s1.equals("Fehrenheit | °F")){
-                    switch (s2){
-                        case "Celsius | °C":
-                            result = (num1-32)*5/9;
-                            text2.setText(String.format("%.4f", result));
-                            break;
-                        case "Fehrenheit | °F":
-                            result = num1;
-                            text2.setText(String.format("%.4f", result));
-                            break; 
-                        case "Kelvin | K":
-                            result = ((num1-32)*5/9)+273.15;
-                            text2.setText(String.format("%.4f", result));
-                            break; 
+                catch(NumberFormatException ee) {
+                    JOptionPane.showMessageDialog(null, "Enter a number!","Error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
+        /*---*/
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if(text1.getText().equals("") && text2.getText().equals(""))
+                        throw new InputException("Error: Missing inputs");
+                    if(isSaved == true) {
+                        isSaved = false;
+                        String operation = text1.getText() + " " + String.valueOf(list1.getSelectedItem()) + " = " + text2.getText() + " " + String.valueOf(list2.getSelectedItem());
+                        BufferedWriter file = new BufferedWriter(new FileWriter("History.txt",true));
+                        file.write(operation+"\n\n");
+                        file.close();
+                        JOptionPane.showMessageDialog(null,"Successful Save!","Done",JOptionPane.PLAIN_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Error: You can't save without converting first","Saving Failed!",JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                //converting from Kelvin K to other units
-                if(s1.equals("Kelvin | K")){
-                    switch(s2){
-                        case "Celsius | °C":
-
-                            result = num1 - 273.15;
-                            text2.setText(String.format("%.4f", result));
-                            break;
-                        case "Fehrenheit | °F":
-                            result = ((num1-273.15)*9/5)+32;
-                            text2.setText(String.format("%.4f", result));
-                            break;
-                        case "Kelvin | K":
-                            result = num1;
-                            text2.setText(String.format("%.4f", result));
-                            break;
-                    }
+                catch(IOException e1) {
+                    JOptionPane.showMessageDialog(null, "I/O Error","Save failed!",JOptionPane.ERROR_MESSAGE);
                 }
-                //end of converting
+                catch(InputException e2) {
+                    JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
-            }
-            catch(NumberFormatException ee){
-                JOptionPane.showMessageDialog(null, "Enter a number ya bro!","Error",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
+        });
+    }   
 }
