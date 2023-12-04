@@ -18,3 +18,15 @@
 
 1 Minute = 1.0 Minute
 
+10 Kilometers | km = 1000000.0 Centimeters | cm
+
+Faris hello Kilometers | km = 1000000.0 Centimeters | cm
+
+Faris hello Kilometers | km = 1000000.0 Centimeters | cm
+
+Faris hello Kilometers | km = 1000000.0 Centimeters | cm
+
+Faris hello Kilometers | km = 1000000.0 Centimeters | cm
+
+2 Minute = 10.0 Minute
+
