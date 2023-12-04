@@ -230,6 +230,13 @@ public class Home extends JFrame {
                  JOptionPane.showMessageDialog(null, msg,"help",JOptionPane.PLAIN_MESSAGE);
             }
         });
+        
+        discount.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Discount d= new Discount(Home.this,"Discount");
+            }
+        });
      }
        public void clearTheHistoryFile(){
            try{

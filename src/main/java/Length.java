@@ -18,7 +18,7 @@ public class Length extends JFrame{
     JTextField text1, text2;
     JButton convert, clr, back ,save;
     JLabel l;
-    boolean isSaved = false;
+    boolean noError = true;
     String measurments[]={"Kilometers | km","Meters | m","Centimeters | cm","Millimeter | mm"};
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
@@ -38,7 +38,7 @@ public class Length extends JFrame{
         back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
-        back.setBackground(Color.decode("#a5b0b3"));
+        back.setBackground(Color.decode("#B6BBC4"));
         back.setForeground(Color.decode("#023020"));
         back.setBorderPainted(false);
         back.addActionListener(new ActionListener(){
@@ -85,7 +85,7 @@ public class Length extends JFrame{
         
         text2 = new JTextField(10);
         text2.setEditable(false);
-        text2.setBackground(Color.decode("#fafeff"));
+        text2.setBackground(Color.decode("#B6BBC4"));
         text2.setForeground(Color.decode("#36454F"));
         text2.setFont(bFonts);
         p3.add(list2);
@@ -95,16 +95,16 @@ public class Length extends JFrame{
        //functions bar
        JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p5.setBackground(Color.decode("#36454F"));
-       convert = new JButton("convert");
+       convert = new JButton("Convert");
        convert.setFont(bFonts);
-       convert.setBackground(Color.decode("#a5b0b3"));
+       convert.setBackground(Color.decode("#B6BBC4"));
        convert.setForeground(Color.decode("#023020"));
        convert.setFocusable(false);
        convert.setBorderPainted(false);
        
-       clr = new JButton("clr");
+       clr = new JButton("Clear");
        clr.setFont(bFonts);
-       clr.setBackground(Color.decode("#a5b0b3"));
+       clr.setBackground(Color.decode("#B6BBC4"));
        clr.setForeground(Color.decode("#023020"));
        clr.setFocusable(false);
        clr.setBorderPainted(false);
@@ -115,9 +115,9 @@ public class Length extends JFrame{
        //save bar
        JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p6.setBackground(Color.decode("#36454F"));
-       save = new JButton("save");
+       save = new JButton("Save");
        save.setFont(bFonts);
-       save.setBackground(Color.decode("#a5b0b3"));
+       save.setBackground(Color.decode("#B6BBC4"));
        save.setForeground(Color.decode("#023020"));
        save.setFocusable(false);
        save.setBorderPainted(false);
@@ -137,8 +137,9 @@ public class Length extends JFrame{
         
         //action listeners call
         clr.addActionListener(new ClearText());
-        convert.addActionListener(new Calculate());
-        save.addActionListener(new SaveButton());
+        convert.addActionListener(new Action());
+        save.addActionListener(new Action());
+
     }
     private class ClearText implements ActionListener{
         public void actionPerformed (ActionEvent e){
@@ -149,17 +150,19 @@ public class Length extends JFrame{
             }
         }
     }
-    private class Calculate implements ActionListener{
-         public void actionPerformed (ActionEvent e){
-             double num1,result;
-             try{                                                           
-             if(e.getSource()==convert){
-                 num1 = Double.parseDouble(text1.getText());
+  private class Action implements ActionListener{
+        public void actionPerformed (ActionEvent e){
+            
+            if(e.getSource()==convert || e.getSource()==save){
+                double num1,result=0;
+                boolean noError=true;
+                try{
+                num1 = Double.parseDouble(text1.getText());
                 String s1 = String.valueOf(list1.getSelectedItem());
                 String s2 = String.valueOf(list2.getSelectedItem());
-                isSaved = true;
-                 //converting from kilometer to other units
-                 if (s1.equals("Kilometers | km")){
+                   
+
+                if (s1.equals("Kilometers | km")){
                      switch(s2){
                          case "Kilometers | km":
                              result = num1;
@@ -243,37 +246,34 @@ public class Length extends JFrame{
                              break;
                      }
                  }
-                 //end of converting
-             }
-            }
-             catch(NumberFormatException ee){
-                 JOptionPane.showMessageDialog(null, "Enter a number!","Error",JOptionPane.ERROR_MESSAGE);
-             }
-         }
-    }
-    private class SaveButton implements ActionListener{
-        public void actionPerformed (ActionEvent e){
-            try{
-                if(text1.getText().equals("")&&text2.getText().equals(""))
-                    throw new InputException("Missing inputs");
-                if(isSaved == true){
-                    isSaved = false;
-                    String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
-                    BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
-                    his.write(s+"\n\n");
-                    his.close();
-                    JOptionPane.showMessageDialog(null,"Successful save!","Done",JOptionPane.PLAIN_MESSAGE);
+
+                
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"You can't save without converting first","Saving Failed!",JOptionPane.ERROR_MESSAGE);
+                catch(Exception e1){
+                    JOptionPane.showMessageDialog(null, "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
+                    noError = false;
                 }
+                    if(e.getSource()==save && noError){
+                            try{
+                            if(text1.getText().equals("") || text2.getText().equals(""))
+                                throw new InputException("Missing inputs");
+                                String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
+                                BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
+                                his.write(s+"\n\n");
+                                his.close();
+                                JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        catch(IOException e1){
+                                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+
+                        }
+                        catch(InputException e2){
+                        JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+
+                        }
+               }
             }
-            catch(IOException e1){
-                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
-            }
-            catch(InputException e2){
-                JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-            }
+            
         }
-    }
+  }
 }
