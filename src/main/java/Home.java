@@ -19,6 +19,7 @@ public class Home extends JFrame {
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setSize(500,600);
          this.setLocation(200,300);
+         clearTheHistoryFile();
          
          //App name
          JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -230,6 +231,16 @@ public class Home extends JFrame {
             }
         });
      }
+       public void clearTheHistoryFile(){
+           try{
+                   FileWriter f2 = new FileWriter("History.txt");
+                   f2.close();
+
+               }
+           catch(Exception e){
+
+           }
+       }
     
     public static void main(String[] args){
         Home f1 = new Home("Home");

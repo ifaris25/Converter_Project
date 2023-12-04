@@ -55,6 +55,7 @@ public class History extends JFrame{
         textArea = new JTextArea(10, 30);
         textArea.setBackground(Color.decode("#B6BBC4"));
         textArea.setForeground(Color.decode("#31304D"));
+        textArea.setEditable(false);
         JScrollPane scroll = new JScrollPane(textArea);
         
         try (BufferedReader reader = new BufferedReader(new FileReader("History.txt"))) {

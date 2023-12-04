@@ -56,8 +56,8 @@ public class Time extends JFrame{
         back = new JButton ("Back");
         back.setFocusable(false);
         back.setFont(bFonts);
-        back.setBackground(Color.decode("#36454F"));
-        back.setForeground(Color.decode("#fafeff"));
+        back.setBackground(Color.decode("#a5b0b3"));
+        back.setForeground(Color.decode("#023020"));
         back.setBorderPainted(false);
         back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -69,10 +69,10 @@ public class Time extends JFrame{
         
     JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p6.setBackground(Color.decode("#36454F"));
-       save = new JButton("save");
+        save = new JButton("save");
        save.setFont(bFonts);
-       save.setBackground(Color.decode("#36454F"));
-       save.setForeground(Color.decode("#fafeff"));
+       save.setBackground(Color.decode("#a5b0b3"));
+       save.setForeground(Color.decode("#023020"));
        save.setFocusable(false);
        save.setBorderPainted(false);
        save.addActionListener(new Action());
@@ -125,20 +125,20 @@ public class Time extends JFrame{
         //functions bar
         JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p5.setBackground(Color.decode("#36454F"));
-        convert = new JButton("convert");
-        convert.setFont(bFonts);
-        convert.setBackground(Color.decode("#36454F"));
-        convert.setForeground(Color.decode("#fafeff"));
-        convert.setFocusable(false);
-        convert.setBorderPainted(false);
+         convert = new JButton("convert");
+         convert.setFont(bFonts);
+         convert.setBackground(Color.decode("#a5b0b3"));
+         convert.setForeground(Color.decode("#023020"));
+         convert.setFocusable(false);
+         convert.setBorderPainted(false);
         convert.addActionListener(new Action());
        
         clr = new JButton("clr");
-        clr.setFont(bFonts);
-        clr.setBackground(Color.decode("#36454F"));
-        clr.setForeground(Color.decode("#fafeff"));
-        clr.setFocusable(false);
-        clr.setBorderPainted(false);
+       clr.setFont(bFonts);
+       clr.setBackground(Color.decode("#a5b0b3"));
+       clr.setForeground(Color.decode("#023020"));
+       clr.setFocusable(false);
+       clr.setBorderPainted(false);
         clr.addActionListener(new Action());
        
         p5.add(convert);
@@ -166,25 +166,10 @@ public class Time extends JFrame{
                 text2.setText("");
                 
             }
-                        if(e.getSource()==save){
-                try{
-                if(text1.getText().equals("") || text2.getText().equals(""))
-                    throw new InputException("Missing inputs");
-                    String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
-                    BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
-                    his.write(s+"\n\n");
-                    his.close();
-                    JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch(IOException e1){
-                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
-            }
-            catch(InputException e2){
-                JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-            }
-            }
-            if(e.getSource()==convert){
+                       
+            if(e.getSource()==convert || e.getSource()==save){
                 double num1,result=0;
+                boolean noError=true;
                 try{
                 num1 = Double.parseDouble(text1.getText());
                 String s1 = String.valueOf(list1.getSelectedItem());
@@ -223,7 +208,27 @@ public class Time extends JFrame{
                 }
                 catch(Exception e1){
                     JOptionPane.showMessageDialog(null, "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
+                    noError = false;
                 }
+                    if(e.getSource()==save && noError){
+                            try{
+                            if(text1.getText().equals("") || text2.getText().equals(""))
+                                throw new InputException("Missing inputs");
+                                String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
+                                BufferedWriter his = new BufferedWriter(new FileWriter("History.txt",true));
+                                his.write(s+"\n\n");
+                                his.close();
+                                JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        catch(IOException e1){
+                                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+
+                        }
+                        catch(InputException e2){
+                        JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+
+                        }
+               }
             }
             
         }
