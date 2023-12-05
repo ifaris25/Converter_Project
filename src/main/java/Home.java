@@ -155,6 +155,18 @@ public class Home extends JFrame {
                 Length l = new Length(Home.this,"Length"); 
             }
         });
+         currency.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Currency c = new Currency(Home.this); 
+            }
+        });
+          age.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evtk){
+                setVisible(false);
+                Age ll = new Age(Home.this,"Age"); 
+            }
+        });
         
         mass.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
