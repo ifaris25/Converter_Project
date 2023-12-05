@@ -156,7 +156,7 @@ public class Date extends JFrame{
         find_Dif.setFocusable(false);
         find_Dif.setBorderPainted(true);
         
-        clr = new JButton("clr");
+        clr = new JButton("Clear");
         clr.setFont(b1Fonts);
         clr.setBackground(Color.decode("#B6BBC4"));
         clr.setForeground(Color.decode("#023020"));

@@ -226,8 +226,8 @@ public class Home extends JFrame {
         
         help.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                 String msg = "This Java application provides a versatile unit converter\nthat allows users to convert various units\nacross different categories including length, mass, speed,\ndiscount, data, date, temperature, time, and more.";
-                 JOptionPane.showMessageDialog(null, msg,"help",JOptionPane.PLAIN_MESSAGE);
+                 setVisible(false);
+                 Help h = new Help(Home.this,"Help");
             }
         });
         

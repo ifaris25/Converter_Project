@@ -174,19 +174,15 @@ public class Discount extends JFrame{
             if (e.getSource()==calc){
                 double num1, num2,ress;
                 try{
-                num1 = Double.parseDouble(op.getText());
-                num2 = Double.parseDouble(d.getText());
-                if(num2 < num1 && num1 != 0){
-                    ress = (num2/num1)*100;
+                    num1 = Double.parseDouble(op.getText());
+                    num2 = Double.parseDouble(d.getText());
+              
+                    ress = (num2*num1)/100;
                     sa.setText(String.valueOf(ress));
                     res.setText(String.valueOf(num1-ress));
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"Really!","Failed",JOptionPane.ERROR_MESSAGE);
-                }
-                }
                 catch(Exception ee){
-                    JOptionPane.showMessageDialog(null,"Are you kidding?","Error",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Enter a number my friend","Error",JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
