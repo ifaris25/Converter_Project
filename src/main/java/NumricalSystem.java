@@ -42,7 +42,8 @@ public class NumricalSystem extends JFrame{
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
-    public NumricalSystem(Home homepage){
+    public NumricalSystem(JFrame homepage , String title){
+        super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.setSize(500,600);
                 this.setLocation(200,300);
@@ -69,7 +70,7 @@ public class NumricalSystem extends JFrame{
         
         JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p6.setBackground(Color.decode("#36454F"));
-        save = new JButton("save");
+        save = new JButton("Save");
        save.setFont(bFonts);
        save.setBackground(Color.decode("#a5b0b3"));
        save.setForeground(Color.decode("#023020"));
@@ -125,7 +126,7 @@ public class NumricalSystem extends JFrame{
         //functions bar
         JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p5.setBackground(Color.decode("#36454F"));
-         convert = new JButton("convert");
+         convert = new JButton("Convert");
        convert.setFont(bFonts);
        convert.setBackground(Color.decode("#a5b0b3"));
        convert.setForeground(Color.decode("#023020"));
@@ -133,7 +134,7 @@ public class NumricalSystem extends JFrame{
        convert.setBorderPainted(false);
         convert.addActionListener(new Action());
        
-        clr = new JButton("clr");
+        clr = new JButton("Clear");
        clr.setFont(bFonts);
        clr.setBackground(Color.decode("#a5b0b3"));
        clr.setForeground(Color.decode("#023020"));

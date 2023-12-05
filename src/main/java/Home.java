@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-
 public class Home extends JFrame {
     JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help, age, currency, bmi;
     JLabel conv;
@@ -187,7 +186,7 @@ public class Home extends JFrame {
         time.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Time l = new Time(Home.this); 
+                Time l = new Time(Home.this,"Time"); 
                
 
             }
@@ -196,7 +195,7 @@ public class Home extends JFrame {
         speed.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Speed l = new Speed(Home.this); 
+                Speed l = new Speed(Home.this,"Speed"); 
                
 
             }
@@ -205,7 +204,7 @@ public class Home extends JFrame {
         numSys.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                NumricalSystem l = new NumricalSystem(Home.this); 
+                NumricalSystem l = new NumricalSystem(Home.this,"Numrical System"); 
                
 
             }
