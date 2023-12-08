@@ -86,8 +86,8 @@ public class Temperature extends JFrame {
         
         text2 = new JTextField(10);
         text2.setEditable(false);
-        text2.setBackground(Color.decode("#fafeff"));
-        text2.setForeground(Color.decode("#36454F"));
+        text2.setBackground(Color.decode("#fafeff"));       //change color into #B6BBC4
+        text2.setForeground(Color.decode("#36454F"));       
         text2.setFont(bFonts);
         p3.add(list2);
         p3.add(text2);

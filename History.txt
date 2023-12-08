@@ -1,6 +1,0 @@
-100 meter/second = 100.0 meter/second
-
-101 Binary = 5.0 Decimal
-
-1 Minute = 60.0 Second
-
