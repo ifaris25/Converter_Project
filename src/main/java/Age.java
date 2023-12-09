@@ -12,6 +12,9 @@ import java.util.Locale;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.text.ParseException;
@@ -19,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 public class Age extends JFrame {
-JButton back,Cal_Age,clr;
+JButton back,Cal_Age,clear , save;
     JLabel l , fDate, sDate;
     JComboBox fdays, fmonths, sdays, smonths;      
     JTextField year_1, year_2,result;
@@ -112,12 +115,6 @@ JButton back,Cal_Age,clr;
         pfd.add(fD);
         pfd.add(fLists);
         
-        
-        
-        
-      
-        
-      
       
         
         //Calculate button
@@ -130,15 +127,26 @@ JButton back,Cal_Age,clr;
         Cal_Age.setFocusable(false);
         Cal_Age.setBorderPainted(true);
         
-        clr = new JButton("clr");
-        clr.setFont(b1Fonts);
-        clr.setBackground(Color.decode("#a5b0b3"));
-        clr.setForeground(Color.decode("#023020"));
-        clr.setFocusable(false);
-        clr.setBorderPainted(true);
+        clear = new JButton("clear");
+        clear.setFont(b1Fonts);
+        clear.setBackground(Color.decode("#a5b0b3"));
+        clear.setForeground(Color.decode("#023020"));
+        clear.setFocusable(false);
+        clear.setBorderPainted(true);
         cal.add(Cal_Age);
-        cal.add(clr);
+        cal.add(clear);
         
+        // save bar
+         JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+       p6.setBackground(Color.decode("#36454F"));
+       save = new JButton("Save");
+       save.setFont(bFonts);
+       save.setBackground(Color.decode("#B6BBC4"));
+       save.setForeground(Color.decode("#023020"));
+       save.setFocusable(false);
+       save.setBorderPainted(false);
+       p6.add(save);
+       
         //result bar
         JPanel res = new JPanel(new FlowLayout(FlowLayout.CENTER));
         res.setBackground(Color.decode("#36454F"));
@@ -160,16 +168,19 @@ JButton back,Cal_Age,clr;
         p.add(pfd);
         p.add(cal);
         p.add(res);
+        p.add(p6);
         
         this.setVisible(true);
         
-        Cal_Age.addActionListener(new Calc());
-        clr.addActionListener(new Clr());
+        Cal_Age.addActionListener(new Calc_Age());
+        clear.addActionListener(new ClearFunc());
+        save.addActionListener(new  ActionAge() );
     }
     
-    private class Calc implements ActionListener{
+    private class Calc_Age implements ActionListener{
         public void actionPerformed(ActionEvent e){
-             int birthDay = Integer.parseInt((String) fdays.getSelectedItem());
+try{  
+    int birthDay = Integer.parseInt((String) fdays.getSelectedItem());
         int birthMonth = Integer.parseInt((String) fmonths.getSelectedItem());
         int birthYear = Integer.parseInt(year_1.getText());
 
@@ -182,18 +193,44 @@ JButton back,Cal_Age,clr;
             age--;
         }
 
-        result.setText("Your age is: " + age + " years.");
+        result.setText("Your age is: " + age + " years.");}
+            catch(Exception ee){
+                    JOptionPane.showMessageDialog(null,"Enter a number my friend","Error",JOptionPane.ERROR_MESSAGE);
+                }
        }}
     
-    private class Clr implements ActionListener{
+    private class ClearFunc implements ActionListener{
         public void actionPerformed (ActionEvent e){
             fdays.setSelectedIndex(0);
-           // sdays.setSelectedIndex(0);
+          
             fmonths.setSelectedIndex(0);
-            //smonths.setSelectedIndex(0);
+           
             year_1.setText("");
-            //year_2.setText("");
+            
             result.setText("");
         }
     }
+    private class ActionAge implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+             try{
+                            if(year_1.getText().equals("") )
+                                throw new InputException("Missing inputs");
+                                String s3 = "Your Brithday is "+fdays.getSelectedIndex()+"/"+ fmonths.getSelectedIndex()+
+                                      "/"+year_1.getText()+"\n"+result.getText();
+                                BufferedWriter This = new BufferedWriter(new FileWriter("History.txt",true));
+                                This.write(s3+"\n\n");
+                                This.close();
+                                JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        catch(IOException e1){
+                                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+
+                        }
+                        catch(InputException e2){
+                        JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+
+                        }
+        }
+    }
+
     }

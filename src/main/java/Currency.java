@@ -12,7 +12,7 @@ import java.io.*;
 public class Currency extends JFrame {
 JComboBox list1, list2;
     JTextField text1, text2;
-    JButton convert, clr, back, save;
+    JButton convert, clear, back, save;
     JLabel l;
     boolean isSaved = false;
     String measurments[]={"USD | US dollar","ERU | Euro","SAR | Saudi Riyal","GBP | British Pound", "JPY | Japanese Yen"};
@@ -96,15 +96,15 @@ JComboBox list1, list2;
         convert.setFocusable(false);
         convert.setBorderPainted(false);
        
-        clr = new JButton("Clear");
-        clr.setFont(bFonts);
-        clr.setBackground(Color.decode("#B6BBC4"));
-        clr.setForeground(Color.decode("#31304D"));
-        clr.setFocusable(false);
-        clr.setBorderPainted(false);
+        clear = new JButton("Clear");
+        clear.setFont(bFonts);
+        clear.setBackground(Color.decode("#B6BBC4"));
+        clear.setForeground(Color.decode("#31304D"));
+        clear.setFocusable(false);
+        clear.setBorderPainted(false);
        
         p5.add(convert);
-        p5.add(clr);
+        p5.add(clear);
         
        JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p6.setBackground(Color.decode("#36454F"));
@@ -129,8 +129,30 @@ JComboBox list1, list2;
         this.setVisible(true);//
         
         //action listeners of currency
-        clr.addActionListener(new ClearText());
+        clear.addActionListener(new ClearText());
+        save.addActionListener(new Save());
         convert.addActionListener(new Calculate());
+    }
+   private class Save implements ActionListener{
+        public void actionPerformed (ActionEvent e){         
+                            try{
+                            if(text1.getText().equals("") || text2.getText().equals(""))
+                                throw new InputException("Missing inputs");
+                                String s = text1.getText()+" "+String.valueOf(list1.getSelectedItem())+" = "+ text2.getText()+" "+String.valueOf(list2.getSelectedItem());
+                                BufferedWriter This = new BufferedWriter(new FileWriter("History.txt",true));
+                                This.write(s+"\n\n");
+                                This.close();
+                                JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        catch(IOException e1){
+                                JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+
+                        }
+                        catch(InputException e2){
+                        JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+
+                        }
+        }
     }
     private class ClearText implements ActionListener{
         public void actionPerformed (ActionEvent e){
@@ -140,11 +162,11 @@ JComboBox list1, list2;
     }
     private class Calculate implements ActionListener{
         public void actionPerformed (ActionEvent e){
-            double num1,result;
+        try{    double num1,result;
             num1 = Double.parseDouble(text1.getText());
             String s1 = String.valueOf(list1.getSelectedItem());
             String s2 = String.valueOf(list2.getSelectedItem());
-            try{
+            
             if(e.getSource()==convert){ // same as line 124 no need ... Ifaris25 (:
                 //converting from USD to other 
                 if (s1.equals("USD | US dollar")){
@@ -152,7 +174,7 @@ JComboBox list1, list2;
                         case "USD | US dollar":
                             result = num1;
                             text2.setText(result+"");
-                            break;//USD | US dollar","ERU | Euro","SAR | Saudi Riyal","GBP | British Pound", "JPY | Japanese Yen
+                            break;
                         case "ERU | Euro":
                             result = num1*0.919242 ;
                             text2.setText(result+"");
@@ -170,6 +192,8 @@ JComboBox list1, list2;
                             text2.setText(result+"");
                             break;
                     }
+              
+                }
                 }
                 //converting from ERU to other 
                 if(s1.equals("ERU | Euro")){
@@ -272,11 +296,12 @@ JComboBox list1, list2;
                     }
                 }
                 //end of converting
+            }  catch(Exception ee){
+                    JOptionPane.showMessageDialog(null,"Enter a number my friend","Error",JOptionPane.ERROR_MESSAGE);
             }
-            }
-            catch(NumberFormatException ee){
-                JOptionPane.showMessageDialog(null, "Enter a number ya bro!","Error",JOptionPane.ERROR_MESSAGE);
+           
+               
             }
     }
     
-}}
+}

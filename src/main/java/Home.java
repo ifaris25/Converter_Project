@@ -249,6 +249,12 @@ public class Home extends JFrame {
                 Discount d= new Discount(Home.this,"Discount");
             }
         });
+        bmi.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                BMI b= new BMI(Home.this,"BMI");
+            }
+        });
      }
        public void clearTheHistoryFile(){
            try{
