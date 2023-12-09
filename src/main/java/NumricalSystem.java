@@ -222,9 +222,4 @@ public class NumricalSystem extends JFrame{
             
         }
     }
-    
-    public static void main(String[] args) {
-    }
-    
-    
 }
