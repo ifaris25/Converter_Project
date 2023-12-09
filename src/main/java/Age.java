@@ -37,7 +37,7 @@ JButton back,Cal_Age,clear , save;
         super(s);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
-        this.setLocation(200,300);
+        this.setLocation(500,100);
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));

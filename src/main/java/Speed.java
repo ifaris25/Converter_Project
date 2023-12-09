@@ -35,10 +35,11 @@ public class Speed extends JFrame{
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 32);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
-    public Speed(Home homepage){
+    public Speed(Home homepage,String title){
+        super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.setSize(500,600);
-                this.setLocation(200,300);
+                this.setLocation(500,100);
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -96,7 +97,7 @@ public class Speed extends JFrame{
         
         text2 = new JTextField(10);
         text2.setEditable(false);
-        text2.setBackground(Color.decode("#fafeff"));
+        text2.setBackground(Color.decode("#B6BBC4"));
         text2.setForeground(Color.decode("#36454F"));
         text2.setFont(bFonts);
         p3.add(list2);
@@ -106,7 +107,7 @@ public class Speed extends JFrame{
         //functions bar
         JPanel p5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p5.setBackground(Color.decode("#36454F"));
-         convert = new JButton("convert");
+         convert = new JButton("Convert");
        convert.setFont(bFonts);
        convert.setBackground(Color.decode("#a5b0b3"));
        convert.setForeground(Color.decode("#023020"));
@@ -114,7 +115,7 @@ public class Speed extends JFrame{
        convert.setBorderPainted(false);
         convert.addActionListener(new Action());
        
-       clr = new JButton("clr");
+       clr = new JButton("Clear");
        clr.setFont(bFonts);
        clr.setBackground(Color.decode("#a5b0b3"));
        clr.setForeground(Color.decode("#023020"));
@@ -125,7 +126,7 @@ public class Speed extends JFrame{
         
         JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p6.setBackground(Color.decode("#36454F"));
-        save = new JButton("save");
+        save = new JButton("Save");
        save.setFont(bFonts);
        save.setBackground(Color.decode("#a5b0b3"));
        save.setForeground(Color.decode("#023020"));
