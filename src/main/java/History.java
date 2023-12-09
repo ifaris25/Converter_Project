@@ -19,7 +19,7 @@ public class History extends JFrame{
     public History (Home homepage){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
-        this.setLocation(200,300);
+        this.setLocation(500,100);
         this.setTitle("History");
                 
         //label panel

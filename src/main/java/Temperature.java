@@ -28,8 +28,8 @@ public class Temperature extends JFrame {
     public Temperature(Home homepage) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
-        this.setLocation(200,300);
-        this.setTitle("Temperatura");
+        this.setLocation(500,100);
+        this.setTitle("Temperature");
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -86,9 +86,10 @@ public class Temperature extends JFrame {
         
         text2 = new JTextField(10);
         text2.setEditable(false);
-        text2.setBackground(Color.decode("#fafeff"));       //change color into #B6BBC4
+        text2.setBackground(Color.decode("#B6BBC4"));
         text2.setForeground(Color.decode("#36454F"));       
         text2.setFont(bFonts);
+        text2.setEditable(false);
         p3.add(list2);
         p3.add(text2);
         
@@ -144,17 +145,20 @@ public class Temperature extends JFrame {
             }
         });
         
-        /*---*/
-        convert.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                double num1,result;
+        convert.addActionListener(new Action());
+        save.addActionListener(new Action());
+        
+    }
+    
+    private class Action implements ActionListener {
+        public void actionPerformed (ActionEvent e) {
+            if(e.getSource() == convert || e.getSource() == save) {
+                double num1, result = 0;
+                boolean noError = true;
                 try {
                     num1 = Double.parseDouble(text1.getText());
                     String s1 = String.valueOf(list1.getSelectedItem());
                     String s2 = String.valueOf(list2.getSelectedItem());
-                    isSaved = true;
-                    //converting from Celsius °C to other units
                     if (s1.equals("Celsius | °C")) {
                         switch(s2) {
                             case "Celsius | °C":
@@ -206,37 +210,31 @@ public class Temperature extends JFrame {
                         }
                     }
                 }
-                catch(NumberFormatException ee) {
-                    JOptionPane.showMessageDialog(null, "Enter a number!","Error",JOptionPane.ERROR_MESSAGE);
+                catch(Exception e1) {
+                    JOptionPane.showMessageDialog(null, "Invalid Input", "Error", JOptionPane.ERROR_MESSAGE);
+                    noError = false;
                 }
-            }
-        });
-        
-        /*---*/
-        save.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if(text1.getText().equals("") && text2.getText().equals(""))
-                        throw new InputException("Error: Missing inputs");
-                    if(isSaved == true) {
-                        isSaved = false;
-                        String operation = text1.getText() + " " + String.valueOf(list1.getSelectedItem()) + " = " + text2.getText() + " " + String.valueOf(list2.getSelectedItem());
+            
+                
+                if(e.getSource() == save && noError) {
+                    try {
+                        if(text1.getText().equals("") || text2.getText().equals("")) {
+                            throw new InputException("Missing inputs");
+                        }
+                        String s = text1.getText() + " " + String.valueOf(list1.getSelectedItem()) + " = " + text2.getText() + " " + String.valueOf(list2.getSelectedItem());
                         BufferedWriter file = new BufferedWriter(new FileWriter("History.txt",true));
-                        file.write(operation+"\n\n");
+                        file.write(s+"\n\n");
                         file.close();
-                        JOptionPane.showMessageDialog(null,"Successful Save!","Done",JOptionPane.PLAIN_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null,"Error: You can't save without converting first","Saving Failed!",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Saving is done", "Save", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    catch(IOException e1) {
+                        JOptionPane.showMessageDialog(null, "I/O Error","Save failed",JOptionPane.ERROR_MESSAGE);
+                    }
+                    catch(InputException e2) {
+                        JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                catch(IOException e1) {
-                    JOptionPane.showMessageDialog(null, "I/O Error","Save failed!",JOptionPane.ERROR_MESSAGE);
-                }
-                catch(InputException e2) {
-                    JOptionPane.showMessageDialog(null, e2.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-    }   
+            }            
+        }
+    }
 }
