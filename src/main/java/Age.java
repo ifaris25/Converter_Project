@@ -126,7 +126,7 @@ JButton back,Cal_Age,clear , save;
         Cal_Age.setForeground(Color.decode("#023020"));
         Cal_Age.setFocusable(false);
         Cal_Age.setBorderPainted(true);
-        
+        //clear button
         clear = new JButton("clear");
         clear.setFont(b1Fonts);
         clear.setBackground(Color.decode("#a5b0b3"));
@@ -156,9 +156,8 @@ JButton back,Cal_Age,clear , save;
         result.setFont(b1Fonts);
         result.setEditable(false);
         
-        
-        
         res.add(result);
+        
         //main bar
         JPanel p = (JPanel)this.getContentPane();
         p.setLayout(new GridLayout(6,1));

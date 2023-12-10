@@ -24,7 +24,7 @@ public class BMI extends JFrame{
           super(s);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500,600);
-        this.setLocation(200,300);
+        this.setLocation(500,100);
         
         //label panel
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -122,7 +122,7 @@ public class BMI extends JFrame{
         res.setEditable(false);
         forbmi.add(res);
         
-        //forth bar
+        //for clear , calculte
         JPanel foBar = new JPanel(new FlowLayout(FlowLayout.CENTER));
         foBar.setBackground(Color.decode("#36454F"));
         calc = new JButton("Calculate");
@@ -141,6 +141,8 @@ public class BMI extends JFrame{
        
         foBar.add(calc);
         foBar.add(clear);
+      
+        // save bar       
         JPanel p6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
        p6.setBackground(Color.decode("#36454F"));
        save = new JButton("Save");
@@ -169,6 +171,7 @@ public class BMI extends JFrame{
          save.addActionListener(new ActionBMI());
         this.setVisible(true);//
     }
+    // Function Calculate (BMI)
     public  double CalculateBMI(double h, double w) {
     double SqrtOfHeight = h * h;
     double BMIYou = w / SqrtOfHeight;
@@ -189,12 +192,14 @@ public class BMI extends JFrame{
     return BMIYou;
     
 }
+    
     private class Clear implements ActionListener{
         public void actionPerformed(ActionEvent e){
             if(e.getSource()==clear){
-                text1.setText("");
-                text2.setText("");
+                text1.setText(" ");
+                text2.setText(" ");
                 sa.setText(" ");
+                res.setText(" ");
             }
         }
     }
@@ -203,8 +208,8 @@ public class BMI extends JFrame{
              try{
                             if(text1.getText().equals("") || text2.getText().equals(""))
                                 throw new InputException("Missing inputs");
-                                String s1 = "Your High Is "+text1.getText()+"kg"+"\n"+"Your Weight Is "
-                                        + text2.getText()+" cm"+"\n"+"Your BMi is "+sa.getText();
+                                String s1 = "Your High Is "+text1.getText()+"cm"+"\n"+"Your Weight Is "
+                                        + text2.getText()+"kg"+"\n"+"Your BMi is "+sa.getText()+","+res.getText();
                                 BufferedWriter This = new BufferedWriter(new FileWriter("History.txt",true));
                                 This.write(s1+"\n\n");
                                 This.close();
