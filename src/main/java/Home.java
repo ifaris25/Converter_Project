@@ -252,7 +252,7 @@ public class Home extends JFrame {
                 Discount d= new Discount(Home.this,"Discount");
             }
         });
-<<<<<<< HEAD
+//<<<<<<< HEAD
         bmi.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -260,18 +260,18 @@ public class Home extends JFrame {
             }
         });
      }
-       public void clearTheHistoryFile(){
-           try{
-                   FileWriter f2 = new FileWriter("History.txt");
-                   f2.close();
-=======
-    }
+//       public void clearTheHistoryFile(){
+//           try{
+//                   FileWriter f2 = new FileWriter("History.txt");
+//                   f2.close();
+////=======
+//    }
     
     public void clearTheHistoryFile(){
         try{
             FileWriter f2 = new FileWriter("History.txt");
             f2.close();
->>>>>>> 1342cc466581b91c6745d944219f27d2a8177142
+//>>>>>>> 1342cc466581b91c6745d944219f27d2a8177142
 
         }
         catch(Exception e){
