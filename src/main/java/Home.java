@@ -21,7 +21,7 @@ public class Home extends JFrame {
         this.setSize(500,600);
         this.setLocation(500,100);
         this.setTitle("Home");
-
+        clearTheHistoryFile();
          
         //App name
         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -252,26 +252,27 @@ public class Home extends JFrame {
                 Discount d= new Discount(Home.this,"Discount");
             }
         });
-<<<<<<< HEAD
-        bmi.addActionListener(new ActionListener(){
-=======
+
          bmi.addActionListener(new ActionListener(){
->>>>>>> 4c9640ec5156115005f789394c6b274a8261e791
+
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 BMI b= new BMI(Home.this,"BMI");
             }
         });
-<<<<<<< HEAD
+
      }
     
     public void clearTheHistoryFile(){
         try{
             FileWriter f2 = new FileWriter("History.txt");
             f2.close();
+        }
+        catch(Exception e){
+            
+        }
 
-=======
->>>>>>> 4c9640ec5156115005f789394c6b274a8261e791
+
 
         
     }
