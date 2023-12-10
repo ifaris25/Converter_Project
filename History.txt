@@ -1,0 +1,16 @@
+Your High Is 178kg
+Your Weight Is 69 cm
+Your BMi is 21.778
+
+Your High Is 165kg
+Your Weight Is 54 cm
+Your BMi is 19.835
+
+Your High Is 167cm
+Your Weight Is 50kg
+Your BMi is 17.928
+
+Your High Is 178cm
+Your Weight Is 69kg
+Your BMi is 21.778,Congrats! You are healthy
+
