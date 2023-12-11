@@ -214,7 +214,7 @@ try{
              try{
                             if(year_1.getText().equals("") )
                                 throw new InputException("Missing inputs");
-                                String s3 = "Your Brithday is "+fdays.getSelectedIndex()+"/"+ fmonths.getSelectedIndex()+
+                                String s3 = "Your Brithday is "+fdays.getSelectedItem()+"/"+ fmonths.getSelectedItem()+
                                       "/"+year_1.getText()+"\n"+result.getText();
                                 BufferedWriter This = new BufferedWriter(new FileWriter("History.txt",true));
                                 This.write(s3+"\n\n");
