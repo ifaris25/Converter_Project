@@ -1,107 +1,125 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Faris-Almokayad
+ * 
  */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class Home extends JFrame {
-    JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help;
+    
+    JButton length, speed, discount, mass, data, date, temperature, time, numSys, history, help, age, currency, bmi;
     JLabel conv;
     Font labelFont = new Font(Font.SANS_SERIF,  Font.BOLD, 28);
     Font bFonts = new Font(Font.SANS_SERIF,  Font.CENTER_BASELINE, 16);
     
-     public Home(String s){
-         super(s);
-         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         this.setSize(500,600);
-         this.setLocation(200,300);
+    public Home(){
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(500,600);
+        this.setLocation(500,100);
+        this.setTitle("Home");
+        clearTheHistoryFile();
          
-         //App name
-         JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-         p1.setBackground(Color.decode("#36454F"));
-         conv = new JLabel("Converter app");
-         conv.setFont(labelFont);
-         conv.setForeground(Color.decode("#fafeff"));
-         p1.add(conv);
+        //App name
+        JPanel p1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        p1.setBackground(Color.decode("#36454F"));
+        conv = new JLabel("Converter app");
+        conv.setFont(labelFont);
+        conv.setForeground(Color.decode("#fafeff"));
+        p1.add(conv);
         
-         //App buttons
-         JPanel p2 = new JPanel(new GridLayout(3,3));
-         length = new JButton("Length");
-         length.setBackground(Color.decode("#a5b0b3"));
-         length.setForeground(Color.decode("#36454F"));
-         length.setFont(bFonts);
-         length.setFocusable(false);
+        //App buttons
+        JPanel p2 = new JPanel(new GridLayout(4,3));
+        length = new JButton("Length");
+        length.setBackground(Color.decode("#a5b0b3"));
+        length.setForeground(Color.decode("#36454F"));
+        length.setFont(bFonts);
+        length.setFocusable(false);
          
-         speed = new JButton("Speed");
-         speed.setBackground(Color.decode("#a5b0b3"));
-         speed.setForeground(Color.decode("#36454F"));
-         speed.setFont(bFonts);
-         speed.setFocusable(false);
+        speed = new JButton("Speed");
+        speed.setBackground(Color.decode("#a5b0b3"));
+        speed.setForeground(Color.decode("#36454F"));
+        speed.setFont(bFonts);
+        speed.setFocusable(false);
          
-         discount = new JButton("Discount");
-         discount.setBackground(Color.decode("#a5b0b3"));
-         discount.setForeground(Color.decode("#36454F"));
-         discount.setFont(bFonts);
-         discount.setFocusable(false);
+        discount = new JButton("Discount");
+        discount.setBackground(Color.decode("#a5b0b3"));
+        discount.setForeground(Color.decode("#36454F"));
+        discount.setFont(bFonts);
+        discount.setFocusable(false);
          
-         mass = new JButton("Mass");
-         mass.setBackground(Color.decode("#a5b0b3"));
-         mass.setForeground(Color.decode("#36454F"));
-         mass.setFont(bFonts);
-         mass.setFocusable(false);
+        mass = new JButton("Mass");
+        mass.setBackground(Color.decode("#a5b0b3"));
+        mass.setForeground(Color.decode("#36454F"));
+        mass.setFont(bFonts);
+        mass.setFocusable(false);
          
-         data = new JButton("Data");
-         data.setBackground(Color.decode("#a5b0b3"));
-         data.setForeground(Color.decode("#36454F"));
-         data.setFont(bFonts);
-         data.setFocusable(false);
+        data = new JButton("Data");
+        data.setBackground(Color.decode("#a5b0b3"));
+        data.setForeground(Color.decode("#36454F"));
+        data.setFont(bFonts);
+        data.setFocusable(false);
          
-         time = new JButton("Time");
-         time.setBackground(Color.decode("#a5b0b3"));
-         time.setForeground(Color.decode("#36454F"));
-         time.setFont(bFonts);
-         time.setFocusable(false);
+        time = new JButton("Time");
+        time.setBackground(Color.decode("#a5b0b3"));
+        time.setForeground(Color.decode("#36454F"));
+        time.setFont(bFonts);
+        time.setFocusable(false);
          
-         date = new JButton("Date");
-         date.setBackground(Color.decode("#a5b0b3"));
-         date.setForeground(Color.decode("#36454F"));
-         date.setFont(bFonts);
-         date.setFocusable(false);
+        date = new JButton("Date");
+        date.setBackground(Color.decode("#a5b0b3"));
+        date.setForeground(Color.decode("#36454F"));
+        date.setFont(bFonts);
+        date.setFocusable(false);
          
         
-         temperature = new JButton("Temperature");
-         temperature.setBackground(Color.decode("#a5b0b3"));
-         temperature.setForeground(Color.decode("#36454F"));
-         temperature.setFont(bFonts);
-         temperature.setFocusable(false);
+        temperature = new JButton("Temperature");
+        temperature.setBackground(Color.decode("#a5b0b3"));
+        temperature.setForeground(Color.decode("#36454F"));
+        temperature.setFont(bFonts);
+        temperature.setFocusable(false);
          
          
-         numSys = new JButton("Numerical system");
-         numSys.setBackground(Color.decode("#a5b0b3"));
-         numSys.setForeground(Color.decode("#36454F"));
-         numSys.setFont(bFonts);
-         numSys.setFocusable(false);
+        numSys = new JButton("Numerical system");
+        numSys.setBackground(Color.decode("#a5b0b3"));
+        numSys.setForeground(Color.decode("#36454F"));
+        numSys.setFont(bFonts);
+        numSys.setFocusable(false);
          
+        age = new JButton("Age");
+        age.setBackground(Color.decode("#a5b0b3"));
+        age.setForeground(Color.decode("#36454F"));
+        age.setFont(bFonts);
+        age.setFocusable(false);
          
+        currency = new JButton("Currency");
+        currency.setBackground(Color.decode("#a5b0b3"));
+        currency.setForeground(Color.decode("#36454F"));
+        currency.setFont(bFonts);
+        currency.setFocusable(false);
          
-         p2.add(length);
-         p2.add(speed);
-         p2.add(discount);
-         p2.add(mass);
-         p2.add(data);
-         p2.add(date);
-         p2.add(temperature);
-         p2.add(time);
-         p2.add(numSys);
+        bmi = new JButton("BMI");
+        bmi.setBackground(Color.decode("#a5b0b3"));
+        bmi.setForeground(Color.decode("#36454F"));
+        bmi.setFont(bFonts);
+        bmi.setFocusable(false);
          
+        p2.add(length);
+        p2.add(speed);
+        p2.add(discount);
+        p2.add(mass);
+        p2.add(data);
+        p2.add(date);
+        p2.add(temperature);
+        p2.add(time);
+        p2.add(numSys);
+        p2.add(age);
+        p2.add(currency);
+        p2.add(bmi);
+        
         // last panel contains help and history
         JPanel p3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         p3.setBackground(Color.decode("#36454F"));
@@ -130,24 +148,36 @@ public class Home extends JFrame {
         mainPanel.add((p1),BorderLayout.NORTH);
         mainPanel.add((p2),BorderLayout.CENTER);
         mainPanel.add((p3),BorderLayout.SOUTH);
-        //this.pack();
+        
+        
         this.setVisible(true);
+        
         length.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Length l = new Length(Home.this); 
-               
-
+                Length l = new Length(Home.this,"Length"); 
             }
         });
+         currency.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Currency c = new Currency(Home.this); 
+            }
+        });
+          age.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evtk){
+                setVisible(false);
+                Age ll = new Age(Home.this,"Age"); 
+            }
+        });
+        
         mass.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
                 Mass l = new Mass(Home.this); 
-               
-
             }
         });
+        
         data.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
@@ -156,36 +186,33 @@ public class Home extends JFrame {
 
             }
         });
+        
         time.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Time l = new Time(Home.this); 
+                Time l = new Time(Home.this,"Time"); 
                
 
             }
         });
-        
-        
+          
         speed.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                Speed l = new Speed(Home.this); 
+                Speed l = new Speed(Home.this,"Speed"); 
                
 
             }
         });
-        
         
         numSys.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 setVisible(false);
-                NumricalSystem l = new NumricalSystem(Home.this); 
+                NumricalSystem l = new NumricalSystem(Home.this,"Numrical System"); 
                
 
             }
         });
-        
-        
         
         temperature.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -195,10 +222,62 @@ public class Home extends JFrame {
 
             }
         });
-     }
-    public static void main(String[] args){
-        Home f1 = new Home("Home");//
+        
+        date.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Date l = new Date(Home.this,"Date"); 
+               
+
+            }
+        });
+        
+        history.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                History h = new History(Home.this); 
+            }
+        });
+        
+        help.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                 setVisible(false);
+                 Help h = new Help(Home.this,"Help");
+            }
+        });
+        
+        discount.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                Discount d= new Discount(Home.this,"Discount");
+            }
+        });
+
+         bmi.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent evt){
+                setVisible(false);
+                BMI b= new BMI(Home.this,"BMI");
+            }
+        });
+
      }
     
+    public void clearTheHistoryFile(){
+        try{
+            FileWriter f2 = new FileWriter("History.txt");
+            f2.close();
+        }
+        catch(Exception e){
+            
+        }
+
+
+
+        
+    }
+    public static void main(String[] args){
+        Home work = new Home();
+    }
 }
 
